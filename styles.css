@@ -1,21 +1,21 @@
 /* ============ Family Locksmith — warm/light design system ============ */
 :root{
-  --paper:#FAF6EE; --paper-2:#F2EADB; --paper-3:#ECE2CF;
-  --card:#FFFFFF; --card-soft:#FBF6EC;
-  --espresso:#26201A; --espresso-2:#312A22;
-  --ink:#241E17; --text-2:#4C4238; --muted:#6E6357; --faint:#9C907E;
-  --line:#EAE1D0; --line-2:#DECFB4; --line-3:#D2C0A0;
-  --amber:#F5A524; --amber-2:#EA8F0C; --amber-3:#FFBB45; --amber-deep:#C0730B;
-  --amber-ink:#3E2803; --amber-tint:#FBEBCF;
-  --cream:#F0E8D8; --cream-2:#C6B9A3;
-  --ok:#2E9E68; --ok-tint:#E4F1E8; --wa:#25D366;
+  --paper:#FFFFFF; --paper-2:#F6F7F9; --paper-3:#EEF0F3;
+  --card:#FFFFFF; --card-soft:#F8F9FB;
+  --espresso:#17181C; --espresso-2:#202128;
+  --ink:#121319; --text-2:#3C3F47; --muted:#65676E; --faint:#9A9CA3;
+  --line:#EAEBEE; --line-2:#DCDEE4; --line-3:#CBCED6;
+  --amber:#F5A524; --amber-2:#EA9310; --amber-3:#FFBB45; --amber-deep:#B4770A;
+  --amber-ink:#3E2803; --amber-tint:#FDEFD5;
+  --cream:#F0E8D8; --cream-2:#C6B9A3; --ink-2:#F6F7F9;
+  --ok:#2E9E68; --ok-tint:#E6F3EC; --wa:#25D366;
   --maxw:1200px;
   --r-sm:10px; --r:14px; --r-lg:22px; --r-xl:30px;
   --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   --display:"Archivo","Manrope",-apple-system,BlinkMacSystemFont,Arial,sans-serif;
-  --shadow:0 22px 46px -22px rgba(74,46,2,.22);
-  --shadow-sm:0 8px 22px -12px rgba(74,46,2,.18);
-  --shadow-amber:0 18px 40px -16px rgba(234,143,12,.42);
+  --shadow:0 22px 46px -22px rgba(18,20,35,.16);
+  --shadow-sm:0 8px 22px -12px rgba(18,20,35,.12);
+  --shadow-amber:0 18px 40px -16px rgba(234,143,12,.4);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -64,7 +64,7 @@ p{margin:0}
 /* ---- header ---- */
 .header{position:sticky; top:0; z-index:60; transition:background .3s, border-color .3s, backdrop-filter .3s, box-shadow .3s;
   border-bottom:1px solid transparent}
-.header.scrolled{background:rgba(250,246,238,.85); backdrop-filter:blur(14px); border-bottom-color:var(--line); box-shadow:var(--shadow-sm)}
+.header.scrolled{background:rgba(255,255,255,.85); backdrop-filter:blur(14px); border-bottom-color:var(--line); box-shadow:var(--shadow-sm)}
 .header-inner{display:flex; align-items:center; justify-content:space-between; height:76px; gap:20px}
 .logo{display:flex; align-items:center; gap:12px}
 .logo-badge{width:44px; height:44px; border-radius:12px; flex:none}
@@ -95,8 +95,8 @@ p{margin:0}
   background:radial-gradient(circle, rgba(245,165,36,.26), transparent 62%); pointer-events:none}
 .hero::after{content:""; position:absolute; inset:0; background:
   linear-gradient(180deg, transparent, var(--paper) 97%),
-  repeating-linear-gradient(0deg, rgba(74,46,2,.03) 0 1px, transparent 1px 46px),
-  repeating-linear-gradient(90deg, rgba(74,46,2,.03) 0 1px, transparent 1px 46px);
+  repeating-linear-gradient(0deg, rgba(18,20,35,.03) 0 1px, transparent 1px 46px),
+  repeating-linear-gradient(90deg, rgba(18,20,35,.03) 0 1px, transparent 1px 46px);
   pointer-events:none}
 .hero-grid{position:relative; z-index:2; display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(30px,5vw,68px); align-items:center}
 .hero h1{font-size:clamp(38px,6.4vw,74px); font-weight:900; letter-spacing:-.03em}
@@ -111,11 +111,11 @@ p{margin:0}
 /* hero visual */
 .hero-visual{position:relative; min-height:340px; display:grid; place-items:center}
 .hero-card{position:relative; width:100%; max-width:420px; aspect-ratio:1/1.02; border-radius:var(--r-xl);
-  background:linear-gradient(158deg,#FEF3DB,#FBDDA6); border:1px solid var(--line-2); box-shadow:var(--shadow);
+  background:linear-gradient(160deg,#FFFFFF,#F6F7F9); border:1px solid var(--line-2); box-shadow:var(--shadow);
   display:grid; place-items:center; overflow:hidden}
 .hero-card::before{content:""; position:absolute; width:150%; height:64%; top:-12%; left:-25%;
-  background:radial-gradient(ellipse at center, rgba(255,255,255,.5), transparent 60%)}
-.hero-keymark{width:52%; filter:drop-shadow(0 18px 30px rgba(74,46,2,.22)); position:relative; z-index:2}
+  background:radial-gradient(ellipse at center, rgba(245,165,36,.16), transparent 60%)}
+.hero-keymark{width:52%; filter:drop-shadow(0 18px 30px rgba(18,20,35,.2)); position:relative; z-index:2}
 .float{position:absolute; z-index:4; background:var(--card); border:1px solid var(--line);
   border-radius:16px; padding:14px 16px; box-shadow:var(--shadow)}
 .float-1{top:6%; left:-4%; display:flex; align-items:center; gap:11px}
@@ -234,26 +234,26 @@ p{margin:0}
 .cta-inner p{color:#6a4708; font-weight:600; margin-top:10px; position:relative}
 .cta-actions{display:flex; flex-direction:column; gap:12px; position:relative}
 
-/* ---- footer (warm espresso) ---- */
-.footer{background:var(--espresso); border-top:1px solid var(--line); padding:clamp(48px,6vw,72px) 0 30px}
+/* ---- footer (light) ---- */
+.footer{background:var(--paper-2); border-top:1px solid var(--line); padding:clamp(48px,6vw,72px) 0 30px}
 .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:36px}
-.footer .logo-wm .l1{color:var(--cream)}
-.footer .logo-wm .l2{color:var(--amber)}
-.foot-about p{color:var(--cream-2); font-size:14.5px; margin-top:16px; max-width:34ch}
-.foot h4{color:#fff; font-family:var(--display); font-size:15px; letter-spacing:.02em; margin-bottom:16px}
+.footer .logo-wm .l1{color:var(--muted)}
+.footer .logo-wm .l2{color:var(--ink)}
+.foot-about p{color:var(--muted); font-size:14.5px; margin-top:16px; max-width:34ch}
+.foot h4{color:var(--ink); font-family:var(--display); font-size:15px; letter-spacing:.02em; margin-bottom:16px}
 .foot ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px}
-.foot a,.foot li{color:var(--cream-2); font-size:14.5px; transition:color .18s}
-.foot a:hover{color:var(--amber)}
-.foot-contact a{display:flex; align-items:center; gap:10px; font-weight:600; color:var(--cream)}
-.foot-contact a:hover{color:var(--amber)}
-.foot-contact svg{width:17px;height:17px;color:var(--amber);flex:none}
+.foot a,.foot li{color:var(--muted); font-size:14.5px; transition:color .18s}
+.foot a:hover{color:var(--amber-deep)}
+.foot-contact a{display:flex; align-items:center; gap:10px; font-weight:600; color:var(--ink)}
+.foot-contact a:hover{color:var(--amber-deep)}
+.foot-contact svg{width:17px;height:17px;color:var(--amber-deep);flex:none}
 .foot-bottom{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-  margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); color:var(--cream-2); font-size:13.5px}
-.foot-bottom a{color:var(--cream-2)} .foot-bottom a:hover{color:var(--amber)}
+  margin-top:44px; padding-top:24px; border-top:1px solid var(--line); color:var(--faint); font-size:13.5px}
+.foot-bottom a{color:var(--faint)} .foot-bottom a:hover{color:var(--amber-deep)}
 
 /* ---- sticky mobile action bar ---- */
 .mobile-bar{position:fixed; left:0; right:0; bottom:0; z-index:70; display:none; gap:10px; padding:11px 14px calc(11px + env(safe-area-inset-bottom));
-  background:rgba(250,246,238,.94); backdrop-filter:blur(12px); border-top:1px solid var(--line); box-shadow:0 -8px 24px -14px rgba(74,46,2,.25)}
+  background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-top:1px solid var(--line); box-shadow:0 -8px 24px -14px rgba(18,20,35,.16)}
 .mobile-bar .btn{flex:1}
 
 /* ---- reveal animation ---- */
