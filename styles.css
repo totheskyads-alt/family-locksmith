@@ -360,6 +360,9 @@ p{margin:0}
 .page-hero::before{display:none}
 .photo-frame{position:relative; aspect-ratio:4/3.3; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line-2); box-shadow:var(--shadow)}
 .photo-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; display:block}
+.photo-frame.photo-wide{aspect-ratio:3/2; margin:8px 0 30px}
+.photo-frame.photo-wide img{object-position:center 40%}
+.photo-cap{font-size:13px; color:var(--faint); margin:-20px 0 28px}
 .photo-badge{position:absolute; left:16px; bottom:16px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 14px; box-shadow:var(--shadow); display:flex; align-items:center; gap:11px}
 .photo-badge .st{color:var(--amber-2); font-size:13px; letter-spacing:1px}
 .photo-badge b{font-family:var(--display); font-weight:800; color:var(--ink); font-size:18px; line-height:1; display:block}
