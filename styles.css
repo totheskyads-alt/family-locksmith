@@ -356,13 +356,19 @@ p{margin:0}
 .reviews-wall .rev .quote{display:block; margin-bottom:14px}
 
 /* ---- real photos ---- */
-.page-hero.has-photo{overflow:hidden}
-.page-hero.has-photo::before{display:none}
-.page-hero.has-photo::after{content:""; position:absolute; top:0; right:0; bottom:0; width:48%; z-index:1;
-  background:url("images/hero-door.jpg") center/cover no-repeat;
-  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 26%); mask-image:linear-gradient(90deg, transparent 0, #000 26%)}
+.page-hero.has-photo{overflow:hidden; border-bottom-color:transparent;
+  background:linear-gradient(90deg, rgba(22,17,11,.74) 0%, rgba(22,17,11,.54) 32%, rgba(22,17,11,.24) 56%, rgba(22,17,11,0) 80%), url("images/hero-door.jpg");
+  background-size:cover; background-position:62% 34%; background-repeat:no-repeat}
+.page-hero.has-photo::before,.page-hero.has-photo::after{display:none}
 .page-hero.has-photo .inner{max-width:var(--maxw)}
 .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:min(560px,100%)}
+.page-hero.has-photo .breadcrumb{color:rgba(255,255,255,.72)}
+.page-hero.has-photo .breadcrumb a{color:rgba(255,255,255,.82)}
+.page-hero.has-photo .breadcrumb a:hover{color:#fff}
+.page-hero.has-photo .eyebrow{color:#FFC96B}
+.page-hero.has-photo h1{color:#fff}
+.page-hero.has-photo .lead{color:rgba(255,255,255,.94)}
+.page-hero.has-photo .lead b{color:#fff}
 .photo-frame{position:relative; aspect-ratio:4/3.3; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line-2); box-shadow:var(--shadow)}
 .photo-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; display:block}
 .photo-frame.photo-wide{aspect-ratio:3/2; margin:8px 0 30px}
@@ -373,9 +379,7 @@ p{margin:0}
 .photo-badge b{font-family:var(--display); font-weight:800; color:var(--ink); font-size:18px; line-height:1; display:block}
 .photo-badge .rv{font-size:12px; color:var(--muted)}
 @media (max-width:860px){
-  .page-hero.has-photo{padding-bottom:214px}
-  .page-hero.has-photo::after{width:100%; top:auto; height:240px;
-    -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 58%); mask-image:linear-gradient(180deg, transparent 0, #000 58%)}
+  .page-hero.has-photo{background:linear-gradient(180deg, rgba(22,17,11,.72) 0%, rgba(22,17,11,.5) 50%, rgba(22,17,11,.34) 100%), url("images/hero-door.jpg"); background-size:cover; background-position:center 30%}
   .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:100%}
 }
 
