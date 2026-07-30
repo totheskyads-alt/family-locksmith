@@ -70,16 +70,31 @@ def figure(p):
     )
 
 
+ARROW_L = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+           'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>')
+ARROW_R = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+           'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>')
+
+
 def gallery_html(page):
     tag, head, lead = HEADS[page]
     tiles = "".join(figure(p) for p in PHOTOS)
     return (
         '<section class="section" id="gallery">\n'
         '  <div class="container">\n'
-        '    <div class="section-head">'
+        '    <div class="rail rail-photos">\n'
+        '      <div class="rail-head">\n'
+        '        <div class="section-head">'
         f'<span class="section-tag">{tag}</span><h2>{head}</h2><p>{lead}</p>'
         "</div>\n"
-        f'    <div class="gal">{tiles}</div>\n'
+        '        <div class="rail-nav">'
+        f'<button class="rail-btn rail-prev" type="button" aria-label="Previous photo">{ARROW_L}</button>'
+        f'<button class="rail-btn rail-next" type="button" aria-label="Next photo">{ARROW_R}</button>'
+        "</div>\n"
+        "      </div>\n"
+        '      <div class="rail-track" tabindex="0" role="group" aria-label="Photographs from our jobs">'
+        f"{tiles}</div>\n"
+        "    </div>\n"
         "  </div>\n"
         "</section>"
     )

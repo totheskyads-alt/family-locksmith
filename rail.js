@@ -13,12 +13,14 @@
     var next = rail.querySelector('.rail-next');
     if (!track || !nav || !prev || !next) return;
 
-    // One card plus its gap, so a click lands cleanly on the next snap point.
+    // One tile plus its gap, so a click lands cleanly on the next snap point.
+    // Whatever the track holds counts as a tile, so text cards and photographs
+    // both drive the same arrows.
     function step() {
-      var card = track.querySelector('.rail-card');
-      if (!card) return track.clientWidth;
+      var tile = track.firstElementChild;
+      if (!tile) return track.clientWidth;
       var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return card.getBoundingClientRect().width + gap;
+      return tile.getBoundingClientRect().width + gap;
     }
 
     function scrollable() {
