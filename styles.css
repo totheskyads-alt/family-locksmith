@@ -525,25 +525,6 @@ p{margin:0}
   .reach-figure .big{font-size:clamp(48px,13vw,64px)}
 }
 
-/* the place names. Supporting detail, so it is set like supporting detail:
-   no panel, no fill, just a hairline and quiet type. The separator is an
-   ::after on each town so a dot can only ever trail a name, never begin a
-   line on its own, which is what the panel version did on five rows. */
-.cov-strip{margin-top:34px; padding-top:26px; border-top:1px solid var(--line)}
-/* minmax(0,1fr), not 1fr: a bare 1fr track has min-width:auto, so the nowrap
-   town names push the column wider than the grid and the page scrolls sideways */
-.cov-strip dl{display:grid; grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr); gap:9px 20px; margin:0}
-.cov-strip dt{font-size:13px; font-weight:700; color:var(--text-2); white-space:nowrap}
-.cov-strip dd{margin:0; font-size:13px; color:var(--faint); line-height:1.5}
-.cov-strip dd span{white-space:nowrap}
-.cov-strip dd span:not(:last-child)::after{content:" · "; color:var(--line-3)}
-@media (max-width:1040px){.cov-strip dl{grid-template-columns:auto minmax(0,1fr)}}
-@media (max-width:640px){
-  .cov-strip dl{grid-template-columns:1fr; gap:1px}
-  .cov-strip dt{margin-top:13px}
-  .cov-strip dt:first-child{margin-top:0}
-}
-}
 
 /* contact */
 .contact-layout{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,50px); align-items:start}
