@@ -115,6 +115,11 @@ p{margin:0}
   display:grid; place-items:center; overflow:hidden}
 .hero-card::before{content:""; position:absolute; width:150%; height:64%; top:-12%; left:-25%;
   background:radial-gradient(ellipse at center, rgba(245,165,36,.16), transparent 60%)}
+/* hero video: the poster paints instantly as a background, the clip fades in over it */
+.hero-card.has-media{background:var(--paper-2) url("images/hero-lock-poster.jpg") center/cover no-repeat}
+.hero-card.has-media::before{display:none}
+.hero-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease}
+.hero-media.playing{opacity:1}
 .hero-keymark{width:52%; filter:drop-shadow(0 18px 30px rgba(18,20,35,.2)); position:relative; z-index:2}
 .float{position:absolute; z-index:4; background:var(--card); border:1px solid var(--line);
   border-radius:16px; padding:14px 16px; box-shadow:var(--shadow)}
@@ -156,6 +161,10 @@ p{margin:0}
 .svc .more{display:inline-flex; align-items:center; gap:7px; margin-top:16px; color:var(--amber-deep); font-weight:700; font-size:15px}
 .svc .more svg{width:16px; height:16px; transition:transform .2s}
 .svc:hover .more svg{transform:translateX(4px)}
+/* photo-led service cards: the picture does the work the icon used to */
+.svc.has-thumb{padding-top:0}
+.svc.has-thumb .ic{display:none}
+.svc-thumb{width:calc(100% + 52px); margin:0 -26px 20px; height:180px; object-fit:cover; display:block; background:var(--paper-2)}
 .svc.badge-hot::before{content:"Most requested"; position:absolute; top:18px; right:18px; font-size:11px; font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--amber-ink); background:var(--amber); padding:5px 10px; border-radius:999px}
 
@@ -394,6 +403,9 @@ p{margin:0}
 .photo-frame.photo-wide{aspect-ratio:3/2; margin:8px 0 30px}
 .photo-frame.photo-wide img{object-position:center 40%}
 .photo-cap{font-size:13px; color:var(--faint); margin:-20px 0 28px}
+.photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:0 0 30px}
+.photo-pair .photo-frame{aspect-ratio:4/3}
+@media (max-width:640px){.photo-pair{grid-template-columns:1fr}}
 .photo-badge{position:absolute; left:16px; bottom:16px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 14px; box-shadow:var(--shadow); display:flex; align-items:center; gap:11px}
 .photo-badge .st{color:var(--amber-2); font-size:13px; letter-spacing:1px}
 .photo-badge b{font-family:var(--display); font-weight:800; color:var(--ink); font-size:18px; line-height:1; display:block}

@@ -83,15 +83,10 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-card">
-        <svg class="hero-keymark" viewBox="0 0 100 100" aria-hidden="true">
-          <g transform="rotate(45 50 50)" fill="#F5A524">
-            <circle cx="50" cy="28" r="15" fill="none" stroke="#F5A524" stroke-width="9"/>
-            <rect x="45" y="38" width="10" height="42" rx="1"/>
-            <rect x="55" y="60" width="12" height="8"/>
-            <rect x="55" y="71" width="9" height="7"/>
-          </g>
-        </svg>
+      <div class="hero-card has-media">
+        <video class="hero-media" id="heroVideo" poster="images/hero-lock-poster.jpg" muted playsinline loop preload="none" tabindex="-1" aria-label="A locksmith turning a key in a front door lock">
+          <source src="videos/hero-lock.mp4" type="video/mp4">
+        </video>
         <div class="float float-2">
           <div class="big">24/7</div>
           <div class="s">Answered day and night</div>
@@ -228,7 +223,7 @@
         <span class="chip">Leicester</span><span class="chip">Southampton</span><span class="chip">Brighton</span>
         <span class="chip">Exeter</span><span class="chip">Plymouth</span><span class="chip">+ every town between</span>
       </div>
-      <div class="cov-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Not sure if we cover you? Give us a call, we almost certainly do.</div>
+      <div class="photo-frame photo-wide"><img src="images/street-doors.jpg" width="1400" height="933" alt="Front doors on a British street, part of the areas we cover" loading="lazy"></div><div class="cov-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Not sure if we cover you? Give us a call, we almost certainly do.</div>
     </div>
   </div>
 </section>
@@ -372,6 +367,25 @@
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Hero clip is an enhancement: the poster already carries the page. We only load
+  // it when it is on screen, and never for reduced-motion or data-saver visitors.
+  (function(){
+    const v=document.getElementById('heroVideo'); if(!v) return;
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData=navigator.connection && navigator.connection.saveData;
+    if(reduce||saveData) return;
+    const start=()=>{ v.play().then(()=>v.classList.add('playing')).catch(()=>{}); };
+    const vio=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      vio.disconnect();
+      v.addEventListener('playing',()=>v.classList.add('playing'),{once:true});
+      v.load(); start();
+      // browsers pause background media to save power; pick it up again on return
+      document.addEventListener('visibilitychange',()=>{ if(!document.hidden && v.paused) start(); });
+    }),{threshold:.25});
+    vio.observe(v);
+  })();
 </script>
 </body>
 </html>
