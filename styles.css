@@ -479,8 +479,11 @@ p{margin:0}
   .contact-layout{grid-template-columns:1fr}
   .regions,.trust-cards,.about-values{grid-template-columns:repeat(2,1fr)}
   .reviews-wall{columns:2}
-  .hero-grid{grid-template-columns:1fr; gap:40px}
-  .hero-visual{order:-1}
+  .hero-grid{grid-template-columns:1fr; gap:36px}
+  /* copy first on small screens: a panicking visitor should see the headline and
+     the call button without scrolling, not a photograph */
+  .hero-visual{order:1; min-height:0}
+  .hero-card{max-width:100%; aspect-ratio:16/10}
   .services-grid,.rev-grid{grid-template-columns:repeat(2,1fr)}
   .why,.cov-grid{grid-template-columns:1fr}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
