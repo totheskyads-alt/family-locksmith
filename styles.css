@@ -85,6 +85,13 @@ p{margin:0}
 .header-phone{display:flex; align-items:center; gap:9px; font-weight:800; font-family:var(--display); color:var(--ink); font-size:17px}
 .header-phone .ico{width:34px; height:34px; border-radius:50%; background:var(--amber-tint); display:grid; place-items:center; color:var(--amber-deep)}
 .header-phone .ico svg{width:17px;height:17px}
+/* Header actions: the number is the emergency path, so the button beside it must
+   do something different. Below 1000px the number is hidden, so the call button
+   takes its place there. */
+.btn-quote{display:inline-flex}
+.btn-call-sm{display:none; padding:14px 16px}
+.btn-call-sm svg{width:20px; height:20px}
+
 .burger{display:none; background:var(--card); border:1.5px solid var(--line-2); border-radius:10px; width:44px; height:44px; color:var(--ink); cursor:pointer}
 .burger svg{width:22px;height:22px; margin:0 auto}
 
@@ -484,6 +491,8 @@ p{margin:0}
 /* ============ responsive ============ */
 @media (max-width:1000px){
   .nav,.header-phone{display:none}
+  .btn-quote{display:none}
+  .btn-call-sm{display:inline-flex}
   .burger{display:grid; place-items:center}
   .svc-layout{grid-template-columns:1fr}
   .side-card{position:static; margin-top:8px}

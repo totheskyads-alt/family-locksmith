@@ -30,7 +30,8 @@ WHATSAPP_HREF = "https://wa.me/{}?text={}".format(
 # Anything that has ever stood in for the real details. Order matters: the more
 # specific patterns run first so we never half-rewrite a string.
 SUBSTITUTIONS = [
-    (re.compile(r'https://wa\.me/\d+(\?text=[^"\']*)?'), WHATSAPP_HREF),
+    # only the number is swapped, so per-button prefilled messages survive
+    (re.compile(r'(https://wa\.me/)\d+'), r'\g<1>' + WHATSAPP_NUMBER),
     (re.compile(r'tel:\+?\d{7,}'), PHONE_HREF),
     (re.compile(r'\b0800 123 4567\b'), PHONE_DISPLAY),
     (re.compile(r'\b07000 000000\b'), PHONE_DISPLAY),
