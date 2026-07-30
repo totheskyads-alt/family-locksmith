@@ -330,11 +330,13 @@ p{margin:0}
    twice and the rail travels exactly -50%, which is what makes the loop
    seamless; translate only, so it stays on the compositor. */
 .ticker{background:var(--ink); overflow:hidden; border-bottom:1px solid rgba(255,255,255,.09)}
-.ticker-rail{display:flex; width:max-content; animation:tickerRun 46s linear infinite}
-.ticker-item{display:inline-flex; align-items:center; gap:30px; white-space:nowrap;
-  color:#E9EAEE; font-family:var(--display); font-weight:700; font-size:15.5px;
-  letter-spacing:.01em; padding:15px 0}
-.ticker-item::after{content:"◆"; color:var(--amber); font-size:9px; position:relative; top:-1px}
+.ticker-rail{display:flex; width:max-content; animation:tickerRun 70s linear infinite}
+/* the gap sits before the diamond, the padding after it, so the marker gets the
+   same air on both sides instead of butting up against the next word */
+.ticker-item{display:inline-flex; align-items:center; gap:34px; white-space:nowrap;
+  color:#E9EAEE; font-family:var(--display); font-weight:700; font-size:18px;
+  letter-spacing:.01em; padding:16px 34px 16px 0}
+.ticker-item::after{content:"◆"; color:var(--amber); font-size:10px; position:relative; top:-1px}
 @keyframes tickerRun{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 @media (hover:hover) and (pointer:fine){
   .ticker:hover .ticker-rail{animation-play-state:paused}
@@ -342,7 +344,7 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){
   .ticker-rail{animation:none}
 }
-@media (max-width:640px){.ticker-item{font-size:14px; gap:22px; padding:12px 0}}
+@media (max-width:640px){.ticker-item{font-size:15.5px; gap:24px; padding:13px 24px 13px 0}}
 
 /* ---- promise panel: the honest answer to "will I get ripped off" ----------
    Sits on its own amber panel so it reads as a guarantee, not another card row.

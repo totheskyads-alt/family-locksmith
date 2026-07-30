@@ -4,9 +4,9 @@
     python3 tools/sync-ticker.py
     python3 tools/sync-ticker.py --check
 
-Edit ITEMS below and re-run. The list is emitted twice on purpose: the rail
-animates to translateX(-50%), so the second copy is what the first one turns
-into, and the loop has no seam. Change the count and you break the loop.
+Edit ITEMS below and re-run. The list is emitted COPIES times: the rail animates
+to translateX(-50%), so the back half is what the front half turns into and the
+loop has no seam. COPIES must stay even.
 
 The band is decorative and aria-hidden. It deliberately carries no links, both
 because a link sliding under the cursor is a link nobody can click, and because
@@ -19,21 +19,22 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# ---- what scrolls past. Keep them short; long ones stall the loop -----------
+# ---- what scrolls past: the services, nothing else --------------------------
 ITEMS = [
     "Emergency lockout",
-    "24/7, including bank holidays",
     "uPVC &amp; composite doors",
-    "No call-out charge",
     "Lock changes &amp; repairs",
-    "Price agreed before we set off",
     "Burglary repair",
-    "Around 25 minutes",
     "Security upgrades",
-    "12-month guarantee",
     "Commercial locksmith",
     "Landlord &amp; letting agent",
 ]
+
+# The rail travels -50%, so half of what we emit has to be at least as wide as
+# the widest screen or a gap opens at the wrap. Seven short items make one set
+# roughly 1700px, so we emit four sets: half is then two sets, about 3400px,
+# which covers an ultra-wide monitor.
+COPIES = 4
 
 # Pages that should not carry it.
 EXCLUDE = {"hero-options.html", "testimonials-preview.html"}
@@ -48,7 +49,7 @@ HERO_OPEN = re.compile(r'<section class="(?:hero|page-hero)[^"]*"')
 def band():
     items = "".join(f'<span class="ticker-item">{t}</span>' for t in ITEMS)
     return ('<div class="ticker" aria-hidden="true">'
-            f'<div class="ticker-rail">{items}{items}</div>'
+            f'<div class="ticker-rail">{items * COPIES}</div>'
             "</div>")
 
 
