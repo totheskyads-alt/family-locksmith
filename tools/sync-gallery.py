@@ -61,11 +61,14 @@ MARK = re.compile(r"<!-- gallery:start -->.*?<!-- gallery:end -->", re.S)
 
 
 def figure(p):
-    src, w, h, alt, cap = p
+    """One tile. Captions are deliberately not rendered: the client wanted the
+    photographs clean. The caption text stays in PHOTOS because it is worth
+    keeping, and putting it back is one <figcaption> line here. The alt text
+    carries the description for screen readers and search either way."""
+    src, w, h, alt, _cap = p
     return (
         '<figure class="gal-item">'
         f'<img src="images/{src}" width="{w}" height="{h}" alt="{alt}" loading="lazy">'
-        f"<figcaption>{cap}</figcaption>"
         "</figure>"
     )
 
