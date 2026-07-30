@@ -324,6 +324,26 @@ p{margin:0}
   .gal-item img,.lb-close{transition:none}
 }
 
+/* ---- ticker: a brand band directly under the hero -------------------------
+   Decorative, so it is aria-hidden and carries no links: a link that slides
+   away under the cursor is a link nobody can hit. The item list is rendered
+   twice and the rail travels exactly -50%, which is what makes the loop
+   seamless; translate only, so it stays on the compositor. */
+.ticker{background:var(--ink); overflow:hidden; border-bottom:1px solid rgba(255,255,255,.09)}
+.ticker-rail{display:flex; width:max-content; animation:tickerRun 46s linear infinite}
+.ticker-item{display:inline-flex; align-items:center; gap:30px; white-space:nowrap;
+  color:#E9EAEE; font-family:var(--display); font-weight:700; font-size:15.5px;
+  letter-spacing:.01em; padding:15px 0}
+.ticker-item::after{content:"◆"; color:var(--amber); font-size:9px; position:relative; top:-1px}
+@keyframes tickerRun{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+@media (hover:hover) and (pointer:fine){
+  .ticker:hover .ticker-rail{animation-play-state:paused}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker-rail{animation:none}
+}
+@media (max-width:640px){.ticker-item{font-size:14px; gap:22px; padding:12px 0}}
+
 /* ---- promise panel: the honest answer to "will I get ripped off" ----------
    Sits on its own amber panel so it reads as a guarantee, not another card row.
    The neighbouring sections are tinted full-bleed, so this one stays contained. */
