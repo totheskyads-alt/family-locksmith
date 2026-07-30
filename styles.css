@@ -237,6 +237,85 @@ p{margin:0}
 .rev-foot{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:30px; color:var(--muted); font-size:15px}
 .rev-foot b{color:var(--ink)}
 
+/* ---- rail: horizontal scroll-snap carousel --------------------------------
+   Native scrolling, so a thumb, a trackpad and the keyboard all work before
+   rail.js loads. The arrows are enhancement, not the mechanism. */
+.rail-head{display:flex; align-items:flex-end; justify-content:space-between; gap:28px; margin-bottom:26px}
+.rail-head .section-head{margin-bottom:0}
+.rail-nav{display:none; gap:8px; flex:none; padding-bottom:6px}
+.rail-nav.on{display:flex}
+.rail-btn{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--line-2); background:var(--card);
+  color:var(--ink); display:grid; place-items:center; cursor:pointer; padding:0;
+  transition:transform .16s var(--ease-out), border-color .16s var(--ease-out), opacity .18s var(--ease-out)}
+.rail-btn svg{width:19px; height:19px}
+.rail-btn:active{transform:scale(.94)}
+.rail-btn:disabled{opacity:.3; cursor:default}
+@media (hover:hover) and (pointer:fine){
+  .rail-btn:not(:disabled):hover{border-color:var(--amber); color:var(--amber-deep)}
+}
+/* a fixed track width, not minmax(0,...) — auto columns would otherwise shrink
+   to fit the container and the rail would never overflow, so never scroll */
+.rail-track{display:grid; grid-auto-flow:column; grid-auto-columns:clamp(258px,78vw,330px); gap:18px;
+  /* proximity, not mandatory: mandatory re-snaps mid-flight and cancels the
+     arrows' smooth scroll, dragging the track back to where it started */
+  overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x proximity;
+  padding:4px 4px 10px; margin:-4px -4px -10px; scrollbar-width:none}
+.rail-track::-webkit-scrollbar{display:none}
+.rail-card{scroll-snap-align:start; background:var(--card); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:26px 24px 22px; box-shadow:var(--shadow-sm);
+  display:flex; flex-direction:column; gap:12px}
+.rail-card .rc-tag{align-self:flex-start; background:var(--amber-tint); color:var(--amber-deep);
+  font-size:12.5px; font-weight:700; letter-spacing:.04em; padding:6px 12px; border-radius:999px}
+.rail-card h3{font-size:20px; line-height:1.28; margin:2px 0 0}
+.rail-card p{color:var(--muted); font-size:15.5px; line-height:1.62; flex:1; margin:0}
+.rail-card .rc-foot{display:flex; align-items:center; gap:9px; margin-top:4px; padding-top:15px;
+  border-top:1px solid var(--line); color:var(--text-2); font-size:14px; font-weight:600}
+.rail-card .rc-foot svg{width:17px; height:17px; flex:none; color:var(--amber-deep)}
+/* let the cards run to the screen edge on phones so the next one peeks through */
+@media (max-width:640px){
+  .rail-head{flex-direction:column; align-items:stretch; gap:18px}
+  .rail-nav{padding-bottom:0}
+  .rail-track{padding-inline:clamp(18px,4vw,40px); margin-inline:calc(clamp(18px,4vw,40px) * -1)}
+}
+
+/* ---- gallery: photographs from actual jobs --------------------------------
+   Every frame here is the client's own phone photo, so the tiles are portrait
+   and the captions do the selling. The middle column drops to break the grid,
+   which stops six equal rectangles reading like a stock template. */
+.gal{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.gal-item{position:relative; margin:0; border-radius:var(--r-lg); overflow:hidden;
+  border:1px solid var(--line-2); background:var(--paper-2); aspect-ratio:3/4;
+  box-shadow:var(--shadow-sm); cursor:zoom-in}
+.gal-item img{width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .5s var(--ease-out)}
+.gal-item figcaption{position:absolute; inset:auto 0 0 0; padding:34px 16px 14px;
+  background:linear-gradient(transparent, rgba(10,11,15,.82)); color:#fff;
+  font-size:13.5px; line-height:1.45; font-weight:500}
+@media (hover:hover) and (pointer:fine){
+  .gal-item:hover img{transform:scale(1.045)}
+}
+@media (min-width:861px){
+  .gal-item:nth-child(3n+2){margin-top:34px}
+  .gal{padding-bottom:34px}
+}
+@media (max-width:860px){.gal{grid-template-columns:repeat(2,1fr); gap:12px}}
+@media (max-width:480px){.gal-item figcaption{font-size:12.5px; padding:28px 12px 11px}}
+
+/* lightbox. <dialog> gives us focus trapping and Esc for free. */
+.lb{border:none; padding:0; background:transparent; max-width:min(94vw,760px); max-height:94vh; overflow:visible}
+.lb::backdrop{background:rgba(12,13,18,.86)}
+.lb-fig{margin:0; background:var(--card); border-radius:var(--r-lg); overflow:hidden}
+.lb-fig img{display:block; width:100%; max-height:78vh; object-fit:contain; background:#0E0F13}
+.lb-fig figcaption{padding:16px 20px; color:var(--text-2); font-size:15px; line-height:1.55}
+.lb-close{position:absolute; top:-14px; right:-14px; width:40px; height:40px; border-radius:50%;
+  border:none; background:var(--card); color:var(--ink); display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 6px 20px -6px rgba(0,0,0,.5); transition:transform .16s var(--ease-out)}
+.lb-close:active{transform:scale(.93)}
+.lb-close svg{width:19px; height:19px}
+@media (prefers-reduced-motion:reduce){
+  .gal-item img,.lb-close{transition:none}
+}
+
 /* ---- promise panel: the honest answer to "will I get ripped off" ----------
    Sits on its own amber panel so it reads as a guarantee, not another card row.
    The neighbouring sections are tinted full-bleed, so this one stays contained. */
