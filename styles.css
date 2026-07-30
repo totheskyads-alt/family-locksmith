@@ -325,6 +325,25 @@ p{margin:0}
 .side-card ul li{display:flex; align-items:center; gap:10px; font-size:14.5px; color:var(--ink)}
 .side-card ul li svg{width:18px;height:18px;color:var(--ok);flex:none}
 
+/* emergency page: what-happens timeline */
+.timeline{list-style:none; padding:0; margin:10px 0 30px; display:flex; flex-direction:column; gap:0}
+.timeline li{display:grid; grid-template-columns:104px 1fr; gap:20px; padding:18px 0; border-bottom:1px solid var(--line)}
+.timeline li:last-child{border-bottom:none}
+.timeline .tl-when{font-family:var(--display); font-weight:800; font-size:13px; letter-spacing:.02em; color:var(--amber-deep); padding-top:2px}
+.timeline b{display:block; color:var(--ink); font-family:var(--display); font-size:17px; margin-bottom:4px}
+.timeline p{color:var(--muted); font-size:15px; margin:0}
+@media (max-width:560px){.timeline li{grid-template-columns:1fr; gap:4px}}
+
+/* uPVC page: symptom to cause table */
+.symptoms{margin:10px 0 30px; border:1px solid var(--line-2); border-radius:var(--r); overflow:hidden}
+.sym-row{display:grid; grid-template-columns:1fr 1.15fr; gap:18px; padding:14px 18px; border-bottom:1px solid var(--line); font-size:15px}
+.sym-row:last-child{border-bottom:none}
+.sym-row span:first-child{color:var(--ink); font-weight:600}
+.sym-row span:last-child{color:var(--muted)}
+.sym-head{background:var(--paper-2); font-size:12px; text-transform:uppercase; letter-spacing:.07em}
+.sym-head span{color:var(--faint) !important; font-weight:700 !important}
+@media (max-width:560px){.sym-row{grid-template-columns:1fr; gap:3px}.sym-head{display:none}}
+
 .mini-faq{margin-top:14px}
 .mini-faq .faq{margin:0}
 
