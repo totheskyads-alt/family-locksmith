@@ -175,15 +175,15 @@ p{margin:0}
   letter-spacing:.06em; text-transform:uppercase; color:var(--amber-ink); background:var(--amber); padding:5px 10px; border-radius:999px}
 
 /* ---- steps ---- */
-.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; counter-reset:step}
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
 .step{position:relative; background:var(--card); border:1px solid var(--line); box-shadow:var(--shadow-sm);
   border-radius:var(--r-lg); padding:30px 28px}
-.step .n{counter-increment:step; font-family:var(--display); font-weight:900; font-size:15px; width:40px; height:40px;
-  border-radius:12px; background:var(--amber); color:var(--amber-ink); display:grid; place-items:center; margin-bottom:20px}
-.step .n::before{content:"0" counter(step)}
+.step .ic{width:44px; height:44px; border-radius:13px; background:var(--amber); color:var(--amber-ink);
+  display:grid; place-items:center; margin-bottom:18px}
+.step .ic svg{width:22px; height:22px}
 .step h3{font-size:20px; margin-bottom:8px}
 .step p{color:var(--muted); font-size:15.5px}
-.step .line{position:absolute; top:50px; right:-11px; width:22px; height:2px; background:var(--line-3); z-index:2}
+.step .line{position:absolute; top:52px; right:-11px; width:22px; height:2px; background:var(--line-3); z-index:2}
 .step:last-child .line{display:none}
 
 /* ---- why ---- */
