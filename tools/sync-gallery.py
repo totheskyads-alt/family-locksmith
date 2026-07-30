@@ -42,19 +42,22 @@ PHOTOS = [
 ]
 
 # Per-page heading, so the same gallery does not read identically three times.
+# Headings describe what is in the photographs. Earlier drafts talked about the
+# photography itself ("our own, not stock"), which is our concern, not the
+# customer's: they want to see the work.
 HEADS = {
-    "index.html": ("Our own photographs, not stock",
-                   "Work from the last few weeks",
-                   "Every picture below came off our phone on a real job. If you want to "
-                   "know what we actually turn up and do, this is it."),
-    "services.html": ("From the jobs themselves",
-                      "The parts behind the price",
-                      "Most of what we charge for is the mechanism, not the door. These are "
-                      "the components that come out and go back in."),
-    "about.html": ("Photographs from our own jobs",
-                   "What the work actually looks like",
-                   "No stock library, no staged studio shots. These were taken on the "
-                   "doorstep, between finishing one job and driving to the next."),
+    "index.html": ("Gallery",
+                   "Recent work",
+                   "Cylinders, door mechanisms and locks from jobs we have been out to. "
+                   "Tap any photo to see it full size."),
+    "services.html": ("Gallery",
+                      "The parts we fit and replace",
+                      "Nearly every job comes down to one component. These are the ones "
+                      "that come out and go back in most often."),
+    "about.html": ("Gallery",
+                   "A closer look at the work",
+                   "Anti-snap cylinders, multipoint gearboxes and British Standard mortice "
+                   "locks, photographed on the doorstep as we fitted them."),
 }
 
 MARK = re.compile(r"<!-- gallery:start -->.*?<!-- gallery:end -->", re.S)

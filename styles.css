@@ -241,7 +241,10 @@ p{margin:0}
 .rail-quotes .rev{scroll-snap-align:start; gap:16px}
 .rail-quotes .rev .quote{font-size:16.5px}
 .rail-quotes .rev .who{padding-top:16px; border-top:1px solid var(--line); margin-top:2px}
-.rail-quotes .rev .jb{display:block; font-size:12.5px; color:var(--amber-deep); font-weight:700; margin-top:2px}
+/* town and job sit on one line so the attribution stays two lines deep */
+.rail-quotes .rev .meta{display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; margin-top:1px}
+.rail-quotes .rev .jb{font-size:12.5px; color:var(--amber-deep); font-weight:700}
+.rail-quotes .rev .meta .jb::before{content:"·"; margin-right:7px; color:var(--line-3); font-weight:400}
 
 /* the design-preview banner, only ever seen on testimonials-preview.html */
 .mock-note{background:var(--amber); color:var(--amber-ink); padding:14px 0; font-weight:700; font-size:15px}

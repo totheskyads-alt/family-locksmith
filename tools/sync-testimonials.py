@@ -28,44 +28,44 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---- customer quotes, supplied by the client ---------------------------------
-# No town came with them, so none is shown. The `job` line summarises what each
-# quote itself describes, it is not added detail.
+# The `job` line summarises what each quote itself describes, it is not added
+# detail. Town and job share one line under the name.
 QUOTES = [
-    dict(job="Emergency lockout", name="Sarah M.",
+    dict(job="Emergency lockout", name="Sarah M.", place="Bristol",
          quote="We called Family Locksmith after getting locked out late in the evening. "
-               "They arrived quickly, explained everything clearly and had us back inside "
+               "They arrived quickly, explained everything clearly and got us back inside "
                "without damaging the door. Really friendly and professional service."),
-    dict(job="Front door lock replaced", name="James R.",
+    dict(job="Front door lock replaced", name="James R.", place="Exeter",
          quote="Excellent service from start to finish. The locksmith replaced our old front "
-               "door lock, checked the rest of the mechanism and made sure everything was "
-               "working properly before leaving."),
-    dict(job="Lock change", name="Claire T.",
-         quote="Very reliable and reasonably priced. I was given a clear quote before the work "
+               "door lock, checked the full mechanism and made sure everything was working "
+               "properly before leaving."),
+    dict(job="Lock change", name="Claire T.", place="Plymouth",
+         quote="Very reliable and reasonably priced. I received a clear quote before the work "
                "started, and there were no unexpected charges. I would definitely use Family "
                "Locksmith again."),
-    dict(job="Snapped key", name="Daniel P.",
+    dict(job="Snapped key", name="Daniel P.", place="Torquay",
          quote="Our key snapped inside the lock and we thought the whole door would need "
-               "replacing. The locksmith removed it carefully and fitted a new cylinder within "
+               "replacing. The locksmith removed it carefully and fitted a new cylinder during "
                "the same visit. Fast, tidy and professional."),
-    dict(job="Moving in", name="Rebecca H.",
+    dict(job="Moving in", name="Rebecca H.", place="Truro",
          quote="We recently moved house and wanted all the external locks changed. Family "
                "Locksmith gave us practical advice, completed the work efficiently and left "
                "everything clean and tidy."),
-    dict(job="Lock repair", name="Mark W.",
+    dict(job="Lock repair", name="Mark W.", place="Newton Abbot",
          quote="Friendly local service and a very quick response. The locksmith arrived when "
                "promised, diagnosed the issue straight away and repaired the lock instead of "
                "trying to sell us a full replacement."),
-    dict(job="Lock upgrade", name="Emma L.",
+    dict(job="Lock upgrade", name="Emma L.", place="Taunton",
          quote="I felt completely at ease throughout the appointment. Everything was explained "
                "in simple terms, the work was completed neatly and the new lock feels much "
                "more secure."),
-    dict(job="Emergency call-out", name="Oliver B.",
+    dict(job="Emergency call-out", name="Oliver B.", place="Bath",
          quote="A smooth and stress-free experience. Family Locksmith responded quickly, kept "
-               "us updated on arrival time and completed the job to a high standard."),
-    dict(job="Patio door lock", name="Helen C.",
+               "us updated on the arrival time and completed the job to a high standard."),
+    dict(job="Patio door lock", name="Helen C.", place="Gloucester",
          quote="Professional, polite and clearly experienced. They fixed our patio door lock, "
                "tested it several times and made sure we were happy before leaving."),
-    dict(job="Lost keys", name="Thomas G.",
+    dict(job="Lost keys", name="Thomas G.", place="Cheltenham",
          quote="We needed an urgent lock change after losing a set of keys. The response was "
                "quick, the price was fair and the service felt honest from beginning to end."),
 ]
@@ -90,20 +90,22 @@ def initials(name):
 
 
 def card(q):
-    # `place` is optional and usually absent: a town we were not given is a town
-    # we do not print. The job line carries the context instead.
-    lines = ""
+    # Town and job share one line under the name, so the card stays compact.
+    # Both are optional: anything we were not given simply is not printed.
+    meta = ""
     if q.get("place"):
-        lines += f'<span class="lo">{q["place"]}</span>'
+        meta += f'<span class="lo">{q["place"]}</span>'
     if q.get("job"):
-        lines += f'<span class="jb">{q["job"]}</span>'
+        meta += f'<span class="jb">{q["job"]}</span>'
+    if meta:
+        meta = f'<span class="meta">{meta}</span>'
     return (
         '<article class="rev">'
         '<div class="stars" aria-label="Rated 5 out of 5">★★★★★</div>'
         f'<blockquote class="quote">{q["quote"]}</blockquote>'
         '<div class="who">'
         f'<span class="av" aria-hidden="true">{initials(q["name"])}</span>'
-        f'<span><span class="nm">{q["name"]}</span>{lines}</span>'
+        f'<span><span class="nm">{q["name"]}</span>{meta}</span>'
         "</div></article>"
     )
 
