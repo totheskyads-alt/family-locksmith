@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /hero-options.html
+
+Sitemap: https://totheskyads-alt.github.io/family-locksmith/sitemap.xml
