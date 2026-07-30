@@ -213,6 +213,20 @@ p{margin:0}
 .rev-foot{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:30px; color:var(--muted); font-size:15px}
 .rev-foot b{color:var(--ink)}
 
+/* ---- promise band (honest objection handling, replaces fabricated reviews) ---- */
+.promise{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line-2); border-radius:var(--r-lg); overflow:hidden; background:var(--card)}
+.promise-item{padding:26px 28px; border-right:1px solid var(--line); border-bottom:1px solid var(--line)}
+.promise-item:nth-child(2n){border-right:none}
+.promise-item:nth-last-child(-n+2){border-bottom:none}
+.promise-item b{display:block; font-family:var(--display); font-size:18px; color:var(--ink); margin-bottom:6px; letter-spacing:-.01em}
+.promise-item span{display:block; color:var(--muted); font-size:15px; line-height:1.6}
+@media (max-width:680px){
+  .promise{grid-template-columns:1fr}
+  .promise-item{border-right:none}
+  .promise-item:last-child{border-bottom:none}
+  .promise-item:nth-last-child(2){border-bottom:1px solid var(--line)}
+}
+
 /* ---- faq ---- */
 .faq{max-width:820px; margin:0 auto}
 .faq-item{border:1px solid var(--line); border-radius:var(--r); margin-bottom:12px; background:var(--card); overflow:hidden; box-shadow:var(--shadow-sm)}
@@ -341,6 +355,12 @@ p{margin:0}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none; border-color:var(--amber-2); box-shadow:0 0 0 3px var(--amber-tint)}
 .field textarea{resize:vertical; min-height:120px}
 .form-note{font-size:13px; color:var(--faint); margin-top:6px}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.form-alert{display:none; align-items:center; gap:10px; margin-top:16px; padding:14px 16px; border-radius:10px; font-weight:600; font-size:15px}
+.form-alert svg{width:20px; height:20px; flex:none}
+.form-alert-ok{background:var(--ok-tint); border:1px solid rgba(46,158,104,.35); color:#1c6b45}
+.form-alert-err{background:#FBECE7; border:1px solid #EEC7B9; color:#8A3520}
+.form-alert-err a{color:inherit; text-decoration:underline}
 
 /* about */
 .about-values{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
