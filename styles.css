@@ -236,6 +236,18 @@ p{margin:0}
 .rev .who .lo{font-size:13px; color:var(--muted)}
 .rev-foot{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:30px; color:var(--muted); font-size:15px}
 .rev-foot b{color:var(--ink)}
+/* testimonials ride the same .rail track as the other two carousels */
+.rail-quotes .rail-track{grid-auto-columns:clamp(268px,80vw,380px)}
+.rail-quotes .rev{scroll-snap-align:start; gap:16px}
+.rail-quotes .rev .quote{font-size:16.5px}
+.rail-quotes .rev .who{padding-top:16px; border-top:1px solid var(--line); margin-top:2px}
+.rail-quotes .rev .jb{display:block; font-size:12.5px; color:var(--amber-deep); font-weight:700; margin-top:2px}
+
+/* the design-preview banner, only ever seen on testimonials-preview.html */
+.mock-note{background:var(--amber); color:var(--amber-ink); padding:14px 0; font-weight:700; font-size:15px}
+.mock-note .container{display:flex; align-items:center; gap:11px}
+.mock-note svg{width:20px; height:20px; flex:none}
+.mock-note span{font-weight:500}
 
 /* ---- rail: horizontal scroll-snap carousel --------------------------------
    Native scrolling, so a thumb, a trackpad and the keyboard all work before

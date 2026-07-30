@@ -19,7 +19,7 @@ OG_IMAGE = "images/og-card.jpg"
 # -------------------------------------------------------------------------------
 
 # Pages that should not be indexed or listed.
-EXCLUDE = {"hero-options.html"}
+EXCLUDE = {"hero-options.html", "testimonials-preview.html"}
 
 # Rough priority hints for the sitemap.
 PRIORITY = {"index.html": "1.0", "services.html": "0.9", "contact.html": "0.9", "areas.html": "0.8"}
