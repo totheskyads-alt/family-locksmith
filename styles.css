@@ -584,9 +584,6 @@ p{margin:0}
 .photo-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; display:block}
 .photo-frame.photo-wide{aspect-ratio:3/2; margin:8px 0 30px}
 .photo-frame.photo-wide img{object-position:center 40%}
-/* the van shot is 16:9 and the livery sits near the right edge, so it must not be side-cropped */
-.photo-frame.photo-wide.photo-van{aspect-ratio:16/9}
-.photo-frame.photo-wide.photo-van img{object-position:center}
 .photo-cap{font-size:13px; color:var(--faint); margin:-20px 0 28px}
 .photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:0 0 30px}
 .photo-pair .photo-frame{aspect-ratio:4/3}
