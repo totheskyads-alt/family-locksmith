@@ -507,21 +507,6 @@ p{margin:0}
 .timeline b{display:block; color:var(--ink); font-family:var(--display); font-size:17px; margin-bottom:4px}
 .timeline p{color:var(--muted); font-size:15px; margin:0}
 
-/* clock variant: the marker column becomes a joined line, and the time sits
-   above the step rather than beside it. Same component, different rhythm, for
-   pages where the steps are moments rather than stages. */
-.timeline-clock li{grid-template-columns:1fr; gap:0; padding:0 0 26px 36px;
-  border-bottom:none; position:relative}
-.timeline-clock li:last-child{padding-bottom:0}
-.timeline-clock li::before{content:""; position:absolute; left:0; top:5px; width:13px; height:13px;
-  border-radius:50%; background:var(--amber); box-shadow:0 0 0 4px var(--paper); z-index:1}
-.timeline-clock li:last-child::before{background:var(--ink)}
-.timeline-clock li::after{content:""; position:absolute; left:5.5px; top:17px; bottom:-4px;
-  width:2px; background:var(--line)}
-.timeline-clock li:last-child::after{display:none}
-.timeline-clock .tl-when{padding-top:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase}
-.timeline-clock b{margin-top:3px; font-size:18px}
-.timeline-clock p{font-size:15.5px}
 
 @media (max-width:560px){.timeline li{grid-template-columns:1fr; gap:4px}}
 
