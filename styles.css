@@ -327,6 +327,25 @@ p{margin:0}
   .gal-item img,.lb-close{transition:none}
 }
 
+
+/* ---- home hero as a photograph --------------------------------------------
+   Same treatment as the inner pages, so all four heroes share one composition
+   rule (subject right, copy left under the scrim) and their art is
+   interchangeable. The decorative glow and grid are switched off: they were
+   there to fill an empty background, and there is no empty background now. */
+.hero.has-photo{--hero-img:url("images/hero-home.jpg");
+  background-image:var(--hero-scrim), var(--hero-img);
+  background-size:cover; background-position:right center; background-repeat:no-repeat;
+  overflow:hidden}
+.hero.has-photo::before,.hero.has-photo::after{display:none}
+.hero.has-photo .hero-grid{grid-template-columns:1fr}
+.hero.has-photo .hero-copy{max-width:min(620px,100%)}
+.hero.has-photo h1,.hero.has-photo .lead{text-shadow:0 1px 10px rgba(255,255,255,.85)}
+@media (max-width:860px){
+  .hero.has-photo{background-image:var(--hero-scrim-v), var(--hero-img);
+    background-position:center 22%}
+}
+
 /* ---- ticker: a brand band directly under the hero -------------------------
    Decorative, so it is aria-hidden and carries no links: a link that slides
    away under the cursor is a link nobody can hit. The item list is rendered
@@ -651,6 +670,7 @@ p{margin:0}
 .page-hero.has-photo h1,.page-hero.has-photo .lead{text-shadow:0 1px 10px rgba(255,255,255,.85)}
 .page-hero.hero-areas{--hero-img:url("images/hero-areas.jpg")}
 .page-hero.hero-about{--hero-img:url("images/hero-about.jpg")}
+.page-hero.hero-reviews{--hero-img:url("images/hero-reviews.jpg")}
 
 /* service page layout */
 .svc-layout{display:grid; grid-template-columns:1fr 340px; gap:clamp(30px,4vw,54px); align-items:start}
