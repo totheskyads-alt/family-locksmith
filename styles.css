@@ -404,6 +404,13 @@ p{margin:0}
 .foot a:hover{color:var(--amber-deep)}
 .foot-contact a{display:flex; align-items:center; gap:10px; font-weight:600; color:var(--ink)}
 .foot-contact a:hover{color:var(--amber-deep)}
+/* on a phone the contact column is the last thing before the small print, and
+   stacking two short links wastes a whole row each. Side by side, they read as
+   one pair of actions. */
+@media (max-width:640px){
+  .foot-contact ul{display:flex; flex-wrap:wrap; gap:10px 26px}
+  .foot-contact li{margin:0}
+}
 .foot-contact svg{width:17px;height:17px;color:var(--amber-deep);flex:none}
 .foot-bottom{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
   margin-top:44px; padding-top:24px; border-top:1px solid var(--line); color:var(--faint); font-size:13.5px}
