@@ -62,6 +62,15 @@ HEADS = {
 
 MARK = re.compile(r"<!-- gallery:start -->.*?<!-- gallery:end -->", re.S)
 
+# sync-assets.py appends ?v=<hash> to every image src after this script runs.
+# Comparing with those in place would report a stale gallery on every check, so
+# both sides are normalised before comparison. Run sync-assets.py last.
+STAMP = re.compile(r'(src="images/[^"?]+)\?v=[a-f0-9]+(")')
+
+
+def unstamped(s):
+    return STAMP.sub(r"\g<1>\g<2>", s)
+
 
 def figure(p):
     """One tile. Captions are deliberately not rendered: the client wanted the
@@ -121,7 +130,7 @@ def main():
 
         payload = "<!-- gallery:start -->\n" + gallery_html(page) + "\n<!-- gallery:end -->"
         updated = MARK.sub(lambda _: payload, html, count=1)
-        if updated == html:
+        if unstamped(updated) == unstamped(html):
             continue
         if check:
             stale.append(page)
