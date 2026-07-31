@@ -159,11 +159,22 @@ p{margin:0}
 .svc p{color:var(--muted); font-size:15.5px; line-height:1.55}
 .svc .more{display:inline-flex; align-items:center; gap:7px; margin-top:16px; color:var(--amber-deep); font-weight:700; font-size:15px}
 .svc .more svg{width:16px; height:16px; transition:transform .2s var(--ease-out)}
+/* The whole card is the link, not just the two words at the bottom. A card that
+   lifts under the cursor but only answers one line of text reads as broken.
+   Stretching the existing anchor keeps it to one link per card, so screen
+   readers and search engines still see a single destination. */
+.svc{cursor:pointer}
+.svc .more::after{content:""; position:absolute; inset:0; z-index:1}
+.svc :where(h3,p,.svc-thumb){position:relative}
 .svc:hover .more svg{transform:translateX(4px)}
 /* photo-led service cards: the picture does the work the icon used to */
 .svc.has-thumb{padding-top:0}
 .svc.has-thumb .ic{display:none}
-.svc-thumb{width:calc(100% + 52px); margin:0 -26px 20px; height:180px; object-fit:cover; display:block; background:var(--paper-2)}
+/* max-width:none is load-bearing: the global img{max-width:100%} was clamping
+   this back to the content box, so the thumbnail sat flush on the left and
+   stopped 53px short on the right. That gap is what read as a cropped photo. */
+.svc-thumb{width:calc(100% + 52px); max-width:none; margin:0 -26px 20px; height:180px;
+  object-fit:cover; display:block; background:var(--paper-2)}
 .svc.badge-hot::before{content:"Most requested"; position:absolute; top:18px; right:18px; font-size:11px; font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--amber-ink); background:var(--amber); padding:5px 10px; border-radius:999px}
 
