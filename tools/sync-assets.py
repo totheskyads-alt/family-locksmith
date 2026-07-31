@@ -22,6 +22,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ASSETS = ["styles.css", "track.js", "rail.js", "gallery.js"]
 
+# Photographs get replaced in place under the same filename, so without a stamp
+# a visitor who saw the old one keeps seeing it. Same rule as the CSS: the URL
+# changes only when the bytes do.
+IMG_SRC = re.compile(r'(src=")(images/[A-Za-z0-9._-]+\.(?:jpg|jpeg|png|webp))(?:\?v=[a-f0-9]+)?(")')
+
 
 def digest(name):
     path = os.path.join(ROOT, name)
@@ -42,12 +47,22 @@ def main():
     patterns = [(n, re.compile(r'((?:href|src)=")' + re.escape(n) + r'(?:\?v=[a-f0-9]+)?(")'))
                 for n in ASSETS]
 
+    def stamp_img(m):
+        rel = m.group(2)
+        f = os.path.join(ROOT, rel)
+        if not os.path.exists(f):
+            return m.group(0)
+        with open(f, "rb") as fh:
+            d = hashlib.sha1(fh.read()).hexdigest()[:8]
+        return m.group(1) + rel + "?v=" + d + m.group(3)
+
     touched, stale = [], []
     for path in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
         html = open(path, encoding="utf-8").read()
         updated = html
         for name, pat in patterns:
             updated = pat.sub(r"\g<1>" + name + "?v=" + stamps[name] + r"\g<2>", updated)
+        updated = IMG_SRC.sub(stamp_img, updated)
         if updated == html:
             continue
         page = os.path.basename(path)
@@ -66,6 +81,7 @@ def main():
 
     for name in ASSETS:
         print("  {:<12} v={}".format(name, stamps[name]))
+    print("  images       stamped by content hash")
     print("restamped {} page(s): {}".format(len(touched), ", ".join(touched) or "none already current"))
     return 0
 

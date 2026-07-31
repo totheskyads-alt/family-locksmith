@@ -322,8 +322,13 @@ p{margin:0}
 .hero.has-photo .hero-copy{max-width:min(620px,100%)}
 .hero.has-photo h1,.hero.has-photo .lead{text-shadow:0 1px 10px rgba(255,255,255,.85)}
 @media (max-width:860px){
-  .hero.has-photo{background-image:var(--hero-scrim-v), var(--hero-img);
-    background-position:center 22%}
+  /* On a phone the copy fills the box top to bottom, so a photograph behind it
+     can only ever be a wash. It gets its own strip instead: full width, whole
+     image, nothing cropped and no scrim over it. */
+  .hero.has-photo{background-image:var(--hero-img); background-size:100% auto;
+    background-position:center bottom; background-repeat:no-repeat;
+    padding-bottom:calc(56.25vw + 26px)}
+  .hero.has-photo h1,.hero.has-photo .lead{text-shadow:none}
 }
 
 /* ---- ticker: a brand band directly under the hero -------------------------
@@ -418,10 +423,23 @@ p{margin:0}
   margin-top:44px; padding-top:24px; border-top:1px solid var(--line); color:var(--faint); font-size:13.5px}
 .foot-bottom a{color:var(--faint)} .foot-bottom a:hover{color:var(--amber-deep)}
 
-/* ---- sticky mobile action bar ---- */
-.mobile-bar{position:fixed; left:0; right:0; bottom:0; z-index:70; display:none; gap:10px; padding:11px 14px calc(11px + env(safe-area-inset-bottom));
-  background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-top:1px solid var(--line); box-shadow:0 -8px 24px -14px rgba(18,20,35,.16)}
-.mobile-bar .btn{flex:1}
+/* ---- floating call buttons, phones only ------------------------------------
+   Was a full-width bar across the bottom, which cost 74px of a 812px screen
+   for its whole life. Two discs in the thumb corner cost nothing and never
+   hide, which matters more here than anywhere: the call is the conversion.
+   The class name stays .mobile-bar because track.js reads it to label taps. */
+.mobile-bar{position:fixed; left:auto; right:16px; z-index:70; display:none; gap:12px;
+  bottom:calc(16px + env(safe-area-inset-bottom))}
+.fab{width:58px; height:58px; border-radius:50%; display:grid; place-items:center; flex:none;
+  box-shadow:0 12px 28px -8px rgba(18,20,35,.5);
+  transition:transform .16s var(--ease-out), filter .2s}
+.fab svg{width:26px; height:26px}
+.fab:active{transform:scale(.93)}
+.fab:focus-visible{outline:none; box-shadow:0 0 0 3px #fff, 0 0 0 6px var(--amber-2)}
+.fab-call{background:var(--amber); color:var(--amber-ink)}
+.fab-wa{background:var(--wa); color:#04220f}
+@media (hover:hover) and (pointer:fine){.fab:hover{filter:brightness(1.05)}}
+@media (prefers-reduced-motion:reduce){.fab{transition:none}}
 
 /* ---- motion ----------------------------------------------------------------
    Rule for this site: motion should make it feel crafted and responsive, never
@@ -756,8 +774,10 @@ p{margin:0}
 .photo-badge b{font-family:var(--display); font-weight:800; color:var(--ink); font-size:18px; line-height:1; display:block}
 .photo-badge .rv{font-size:12px; color:var(--muted)}
 @media (max-width:860px){
-  .page-hero.has-photo{background-image:var(--hero-scrim-v), var(--hero-img); background-position:center 40%}
-  .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:100%}
+  .page-hero.has-photo{background-image:var(--hero-img); background-size:100% auto;
+    background-position:center bottom; background-repeat:no-repeat;
+    padding-bottom:calc(56.25vw + 26px)}
+  .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:100%; text-shadow:none}
 }
 
 /* ============ responsive ============ */
@@ -795,5 +815,5 @@ p{margin:0}
   .cta-inner{flex-direction:column; align-items:flex-start}
   .cta-actions{width:100%}
   .mobile-bar{display:flex}
-  body{padding-bottom:74px}
+  body{padding-bottom:18px}
 }
