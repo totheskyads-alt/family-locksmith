@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_URL = "https://totheskyads-alt.github.io/family-locksmith"
 BUSINESS = "Family Locksmith"
 PHONE_E164 = "+447597379838"
-AREA_SERVED = "England"
+AREA_SERVED = ""   # deliberately blank: the site must not state a coverage area
 OG_IMAGE = "images/og-card.jpg"
 # -------------------------------------------------------------------------------
 
@@ -27,13 +27,13 @@ PRIORITY = {"index.html": "1.0", "services.html": "0.9", "contact.html": "0.9", 
 SCHEMA = """<script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Locksmith","@id":"{base}/#business",
 "name":"{name}","url":"{base}/","image":"{base}/{og}","telephone":"{phone}",
-"priceRange":"££","areaServed":{{"@type":"AdministrativeArea","name":"{area}"}},
-"address":{{"@type":"PostalAddress","addressCountry":"GB","addressRegion":"{area}"}},
+"priceRange":"££",
+"address":{{"@type":"PostalAddress","addressCountry":"GB"}},
 "openingHoursSpecification":[{{"@type":"OpeningHoursSpecification",
 "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
 "opens":"00:00","closes":"23:59"}}],
 "contactPoint":{{"@type":"ContactPoint","telephone":"{phone}","contactType":"emergency",
-"availableLanguage":"English","areaServed":"GB"}}}}
+"availableLanguage":"English"}}}}
 </script>"""
 
 

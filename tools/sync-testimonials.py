@@ -17,7 +17,7 @@ TO PUBLISH: add entries to QUOTES and run the script. That is the whole job,
 every page updates. Keep `source` accurate, it is what makes the section
 defensible if anyone asks.
 
-    dict(quote="...", name="Sarah H.", place="Exeter",
+    dict(quote="...", name="Sarah H.",
          job="Emergency lockout", source="WhatsApp, 12 June 2026"),
 """
 import glob
@@ -28,44 +28,46 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---- customer quotes, supplied by the client ---------------------------------
-# The `job` line summarises what each quote itself describes, it is not added
-# detail. Town and job share one line under the name.
+# No towns. The client positions the business as local to whoever is reading,
+# with the area chosen by the Google Ads campaign rather than stated on the
+# site, so ten reviews from ten different towns would contradict the ad that
+# brought the visitor here. `place` is still supported by card(), just unused.
 QUOTES = [
-    dict(job="Emergency lockout", name="Sarah M.", place="Bristol",
+    dict(job="Emergency lockout", name="Sarah M.",
          quote="We called Family Locksmith after getting locked out late in the evening. "
                "They arrived quickly, explained everything clearly and got us back inside "
                "without damaging the door. Really friendly and professional service."),
-    dict(job="Front door lock replaced", name="James R.", place="Exeter",
+    dict(job="Front door lock replaced", name="James R.",
          quote="Excellent service from start to finish. The locksmith replaced our old front "
                "door lock, checked the full mechanism and made sure everything was working "
                "properly before leaving."),
-    dict(job="Lock change", name="Claire T.", place="Plymouth",
+    dict(job="Lock change", name="Claire T.",
          quote="Very reliable and reasonably priced. I received a clear quote before the work "
                "started, and there were no unexpected charges. I would definitely use Family "
                "Locksmith again."),
-    dict(job="Snapped key", name="Daniel P.", place="Torquay",
+    dict(job="Snapped key", name="Daniel P.",
          quote="Our key snapped inside the lock and we thought the whole door would need "
                "replacing. The locksmith removed it carefully and fitted a new cylinder during "
                "the same visit. Fast, tidy and professional."),
-    dict(job="Moving in", name="Rebecca H.", place="Truro",
+    dict(job="Moving in", name="Rebecca H.",
          quote="We recently moved house and wanted all the external locks changed. Family "
                "Locksmith gave us practical advice, completed the work efficiently and left "
                "everything clean and tidy."),
-    dict(job="Lock repair", name="Mark W.", place="Newton Abbot",
+    dict(job="Lock repair", name="Mark W.",
          quote="Friendly local service and a very quick response. The locksmith arrived when "
                "promised, diagnosed the issue straight away and repaired the lock instead of "
                "trying to sell us a full replacement."),
-    dict(job="Lock upgrade", name="Emma L.", place="Taunton",
+    dict(job="Lock upgrade", name="Emma L.",
          quote="I felt completely at ease throughout the appointment. Everything was explained "
                "in simple terms, the work was completed neatly and the new lock feels much "
                "more secure."),
-    dict(job="Emergency call-out", name="Oliver B.", place="Bath",
+    dict(job="Emergency call-out", name="Oliver B.",
          quote="A smooth and stress-free experience. Family Locksmith responded quickly, kept "
                "us updated on the arrival time and completed the job to a high standard."),
-    dict(job="Patio door lock", name="Helen C.", place="Gloucester",
+    dict(job="Patio door lock", name="Helen C.",
          quote="Professional, polite and clearly experienced. They fixed our patio door lock, "
                "tested it several times and made sure we were happy before leaving."),
-    dict(job="Lost keys", name="Thomas G.", place="Cheltenham",
+    dict(job="Lost keys", name="Thomas G.",
          quote="We needed an urgent lock change after losing a set of keys. The response was "
                "quick, the price was fair and the service felt honest from beginning to end."),
 ]
