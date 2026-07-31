@@ -125,27 +125,8 @@ p{margin:0}
 
 /* hero visual */
 .hero-visual{position:relative; min-height:340px; display:grid; place-items:center}
-.hero-card{position:relative; width:100%; max-width:420px; aspect-ratio:1/1.02; border-radius:var(--r-xl);
-  background:linear-gradient(160deg,#FFFFFF,#F6F7F9); border:1px solid var(--line-2); box-shadow:var(--shadow);
-  display:grid; place-items:center; overflow:hidden}
-.hero-card::before{content:""; position:absolute; width:150%; height:64%; top:-12%; left:-25%;
-  background:radial-gradient(ellipse at center, rgba(245,165,36,.16), transparent 60%)}
 /* hero video: the poster paints instantly as a background, the clip fades in over it */
-.hero-card.has-media{background:var(--paper-2) url("images/hero-lock-poster.jpg") center/cover no-repeat}
-.hero-card.has-media::before{display:none}
-.hero-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease}
-.hero-media.playing{opacity:1}
 .hero-keymark{width:52%; filter:drop-shadow(0 18px 30px rgba(18,20,35,.2)); position:relative; z-index:2}
-.float{position:absolute; z-index:4; background:var(--card); border:1px solid var(--line);
-  border-radius:16px; padding:14px 16px; box-shadow:var(--shadow)}
-.float-1{top:16px; left:16px; display:flex; align-items:center; gap:11px}
-.float-1 .dot{width:11px;height:11px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(46,158,104,.16)}
-.float-1 .t{font-size:13px; font-weight:700; color:var(--ink); line-height:1.2}
-.float-1 .s{font-size:11px; color:var(--muted)}
-.float-2{bottom:16px; right:16px; text-align:left}
-.float-2 .stars{color:var(--amber-2); font-size:14px; letter-spacing:2px}
-.float-2 .big{font-family:var(--display); font-weight:800; font-size:22px; color:var(--ink); line-height:1}
-.float-2 .s{font-size:12px; color:var(--muted); margin-top:2px}
 
 /* ---- trust bar ---- */
 .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--paper-2)}
@@ -326,7 +307,6 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){
   .gal-item img,.lb-close{transition:none}
 }
-
 
 /* ---- home hero as a photograph --------------------------------------------
    Same treatment as the inner pages, so all four heroes share one composition
@@ -526,7 +506,6 @@ p{margin:0}
 .timeline b{display:block; color:var(--ink); font-family:var(--display); font-size:17px; margin-bottom:4px}
 .timeline p{color:var(--muted); font-size:15px; margin:0}
 
-
 @media (max-width:560px){.timeline li{grid-template-columns:1fr; gap:4px}}
 
 /* uPVC page: symptom to cause table */
@@ -617,7 +596,6 @@ p{margin:0}
   .reach-figure{padding:26px}
   .reach-figure .big{font-size:clamp(48px,13vw,64px)}
 }
-
 
 /* contact */
 .contact-layout{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,50px); align-items:start}
@@ -726,7 +704,6 @@ p{margin:0}
 
 /* areas hub */
 
-
 /* contact */
 .contact-layout{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,50px); align-items:start}
 .contact-info{display:flex; flex-direction:column; gap:16px}
@@ -798,7 +775,6 @@ p{margin:0}
   /* copy first on small screens: a panicking visitor should see the headline and
      the call button without scrolling, not a photograph */
   .hero-visual{order:1; min-height:0}
-  .hero-card{max-width:100%; aspect-ratio:4/3}
   .services-grid,.rev-grid{grid-template-columns:repeat(2,1fr)}
   .why,.cov-grid{grid-template-columns:1fr}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
@@ -820,6 +796,4 @@ p{margin:0}
   .cta-actions{width:100%}
   .mobile-bar{display:flex}
   body{padding-bottom:74px}
-  .hero-card{max-width:330px}
-  .float-1{left:12px} .float-2{right:12px}
 }
