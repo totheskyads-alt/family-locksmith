@@ -325,11 +325,41 @@ p{margin:0}
   /* On a phone the copy fills the box top to bottom, so a photograph behind it
      can only ever be a wash. It gets its own strip instead: full width, whole
      image, nothing cropped and no scrim over it. */
-  .hero.has-photo{background-image:var(--hero-img); background-size:100% auto;
-    background-position:center bottom; background-repeat:no-repeat;
-    padding-bottom:calc(56.25vw + 26px)}
+  /* A portrait crop of the same photograph, so the background fills the tall
+     box with nothing lost sideways and the subject stays framed. The wash is
+     kept light and the copy carries its own halo, rather than bleaching the
+     picture to make text readable. */
+  .hero.has-photo{--hero-img:url("images/hero-home-m.jpg");
+    background-image:linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.9) 34%, rgba(255,255,255,.62) 62%, rgba(255,255,255,.12) 100%), var(--hero-img);
+    background-size:cover; background-position:center 18%; background-repeat:no-repeat;
+    padding-bottom:clamp(150px,42vw,220px)}
+  .hero.has-photo h1,.hero.has-photo .lead{text-shadow:0 1px 2px #fff, 0 2px 14px rgba(255,255,255,.95)}
+  .hero.has-photo .hero-chips{display:none}
   .hero.has-photo h1,.hero.has-photo .lead{text-shadow:none}
 }
+
+
+/* ---- brand key: the empty half of the story column -------------------------
+   Purely decorative, so aria-hidden. It earns its place here and nowhere else:
+   the About page is where a brand may speak about itself, and this column was
+   blank. The key turns, holds, turns back, which is what a key does. */
+.story{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,64px); align-items:center}
+.brandkey{background:var(--ink); border-radius:var(--r-lg); display:grid; place-items:center;
+  padding:clamp(28px,4vw,48px); aspect-ratio:1/.82; overflow:hidden}
+.brandkey svg{width:min(200px,64%); height:auto}
+.bk-ring{fill:none; stroke:#2A2C33; stroke-width:2}
+.bk-key{transform-origin:50px 74px; animation:bkTurn 5.6s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes bkTurn{
+  0%,14%   {transform:rotate(0deg)}
+  36%,62%  {transform:rotate(90deg)}
+  84%,100% {transform:rotate(0deg)}
+}
+@media (max-width:860px){
+  .story{grid-template-columns:1fr}
+  .brandkey{aspect-ratio:3/2; padding:32px}
+  .brandkey svg{width:min(150px,40%)}
+}
+@media (prefers-reduced-motion:reduce){.bk-key{animation:none; transform:rotate(90deg)}}
 
 /* ---- ticker: a brand band directly under the hero -------------------------
    Decorative, so it is aria-hidden and carries no links: a link that slides
@@ -774,9 +804,16 @@ p{margin:0}
 .photo-badge b{font-family:var(--display); font-weight:800; color:var(--ink); font-size:18px; line-height:1; display:block}
 .photo-badge .rv{font-size:12px; color:var(--muted)}
 @media (max-width:860px){
-  .page-hero.has-photo{background-image:var(--hero-img); background-size:100% auto;
-    background-position:center bottom; background-repeat:no-repeat;
-    padding-bottom:calc(56.25vw + 26px)}
+  /* A portrait crop of the same photograph, so the background fills the tall
+     box with nothing lost sideways and the subject stays framed. The wash is
+     kept light and the copy carries its own halo, rather than bleaching the
+     picture to make text readable. */
+  .page-hero.has-photo{--hero-img:url("images/hero-reviews-m.jpg");
+    background-image:linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.9) 34%, rgba(255,255,255,.62) 62%, rgba(255,255,255,.12) 100%), var(--hero-img);
+    background-size:cover; background-position:center 18%; background-repeat:no-repeat;
+    padding-bottom:clamp(150px,42vw,220px)}
+  .page-hero.has-photo h1,.page-hero.has-photo .lead{text-shadow:0 1px 2px #fff, 0 2px 14px rgba(255,255,255,.95)}
+  .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:100%}
   .page-hero.has-photo h1,.page-hero.has-photo .lead{max-width:100%; text-shadow:none}
 }
 
