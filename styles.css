@@ -910,7 +910,7 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
     background-size:100% 100%, 100% auto;
     background-position:center top, center bottom;
     background-repeat:no-repeat, no-repeat;
-    padding-bottom:clamp(150px,46vw,230px);
+    padding-bottom:clamp(210px,71vw,310px);
   }
   .hero.has-photo::after{display:none}
   .hero.has-photo .hero-chips{display:none}
