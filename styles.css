@@ -904,7 +904,7 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
   .hero.has-photo::after{
     display:block; content:"";
     position:static; inset:auto;
-    width:100%; height:clamp(226px,67vw,300px);
+    width:100%; height:clamp(296px,92vw,384px);
     margin-top:clamp(26px,6vw,38px);
     background:url("images/hero-home-m.jpg") center center / cover no-repeat;
   }
