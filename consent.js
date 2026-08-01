@@ -85,6 +85,14 @@
     + '.flc-reopen.is-on{display:flex}'
     + '.flc-reopen:focus-visible{outline:3px solid #B4770A;outline-offset:2px}'
     + '@media(min-width:640px){.flc{padding:24px}}'
+    + '@media(max-width:639px){.flc{left:10px;right:10px;bottom:10px;padding:15px;border-radius:15px}'
+    + '.flc h2{font-size:16px;margin-bottom:5px}'
+    + '.flc p{font-size:13px;line-height:1.45;margin-bottom:11px}'
+    + '.flc-row{gap:8px}'
+    + '.flc-btn{flex:1 1 0;min-width:0;min-height:44px;padding:10px 8px;font-size:14px}'
+    + '.flc-link{font-size:13px;padding:8px 4px;min-height:36px}'
+    + '.flc-cats{margin:2px 0 12px}.flc-cat{padding:9px 0}'
+    + '.flc-cat label{font-size:13.5px}.flc-cat p{font-size:12.5px}}'
     + '@media(prefers-reduced-motion:no-preference){.flc.is-open{animation:flcIn .22s ease-out}'
     + '@keyframes flcIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}';
 
@@ -135,8 +143,9 @@
   function renderChoice() {
     panel.innerHTML = ''
       + '<h2 id="flc-title">Cookies on this site</h2>'
-      + '<p id="flc-desc">We use cookies that are needed to run the site, and, only if you allow them, cookies that '
-      + 'help us measure how the site is used and how our adverts perform. You can change your mind at any time. '
+      + '<p id="flc-desc">' + (window.innerWidth < 640
+          ? 'We use necessary cookies, plus, only if you allow them, cookies for measurement and adverts. '
+          : 'We use cookies that are needed to run the site, and, only if you allow them, cookies that help us measure how the site is used and how our adverts perform. You can change your mind at any time. ')
       + 'See our <a href="cookies.html">cookie policy</a>.</p>'
       + '<div class="flc-row">'
       + '<button type="button" class="flc-btn flc-reject" data-act="reject">Reject all</button>'
@@ -181,6 +190,7 @@
     });
     var first = panel.querySelector('button');
     if (first) first.focus();
+    if (panel.classList.contains('is-open')) reserveSpace();
   }
 
   function currentPrefs() {
@@ -194,16 +204,27 @@
     reopenBtn.classList.add('is-on');
   }
 
+  function reserveSpace() {
+    // Bannerul e fixat jos. Fara asta ar acoperi butoanele din partea de jos a
+    // paginii (ex. Send message) si formularul nu s-ar putea trimite pe telefon.
+    if (!panel.classList.contains('is-open')) { document.body.style.paddingBottom = ''; return; }
+    document.body.style.paddingBottom = Math.ceil(panel.getBoundingClientRect().height + 24) + 'px';
+  }
+
   function openPanel(fromIcon) {
     lastFocus = document.activeElement;
     if (fromIcon) renderCustom(currentPrefs()); else renderChoice();
     panel.classList.add('is-open');
     if (fromIcon) backdrop.classList.add('is-open');
+    reserveSpace();
+    window.addEventListener('resize', reserveSpace);
   }
 
   function closePanel() {
     panel.classList.remove('is-open');
     backdrop.classList.remove('is-open');
+    document.body.style.paddingBottom = '';
+    window.removeEventListener('resize', reserveSpace);
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 

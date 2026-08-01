@@ -890,3 +890,25 @@ p{margin:0}
 padding:12px 18px;border-radius:0 0 12px 0;font-weight:700;text-decoration:none;
 box-shadow:0 6px 18px rgba(18,19,25,.18)}
 .skip-link:focus{left:0}
+
+/* ---- hero pe telefon: mobile-first -----------------------------------------
+   Cerinta: pe telefon trebuie sa se vada fata omului SI logoul de pe van, iar
+   textul sa ramana perfect lizibil. Fotografia nu mai sta in spatele textului
+   (unde oricum era spalata de un strat alb ca sa se poata citi), ci primeste
+   propria banda sub text. Textul sta pe alb curat, deci contrast maxim. */
+@media (max-width:860px){
+  .hero.has-photo{
+    background-image:none;
+    padding-bottom:0;
+  }
+  .hero.has-photo::after{
+    display:block; content:"";
+    position:static; inset:auto;
+    width:100%; height:clamp(226px,67vw,300px);
+    margin-top:clamp(26px,6vw,38px);
+    background:url("images/hero-home-m.jpg") center center / cover no-repeat;
+  }
+  .hero.has-photo h1,
+  .hero.has-photo .lead{ text-shadow:none; }
+  .hero.has-photo .lead{ color:var(--text-2); }
+}
