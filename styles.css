@@ -891,24 +891,28 @@ padding:12px 18px;border-radius:0 0 12px 0;font-weight:700;text-decoration:none;
 box-shadow:0 6px 18px rgba(18,19,25,.18)}
 .skip-link:focus{left:0}
 
-/* ---- hero pe telefon: mobile-first -----------------------------------------
-   Cerinta: pe telefon trebuie sa se vada fata omului SI logoul de pe van, iar
-   textul sa ramana perfect lizibil. Fotografia nu mai sta in spatele textului
-   (unde oricum era spalata de un strat alb ca sa se poata citi), ci primeste
-   propria banda sub text. Textul sta pe alb curat, deci contrast maxim. */
+/* ---- hero pe telefon ---------------------------------------------------------
+   Fotografia sta in fundal, sub text, ca in varianta initiala. Singura
+   schimbare: incadrarea, ca sa se vada si fata omului, si logoul de pe van.
+   Latimea imaginii = latimea ecranului, asezata jos, iar gradientul alb tine
+   textul lizibil sus si se stinge peste fotografie. */
 @media (max-width:860px){
   .hero.has-photo{
-    background-image:none;
-    padding-bottom:0;
+    --hero-img:url("images/hero-home-m.jpg?v=3");
+    background-image:
+      linear-gradient(180deg,
+        rgba(255,255,255,.97) 0%,
+        rgba(255,255,255,.95) 24%,
+        rgba(255,255,255,.74) 42%,
+        rgba(255,255,255,.18) 62%,
+        rgba(255,255,255,0)   80%),
+      var(--hero-img);
+    background-size:100% 100%, 100% auto;
+    background-position:center top, center bottom;
+    background-repeat:no-repeat, no-repeat;
+    padding-bottom:clamp(150px,46vw,230px);
   }
-  .hero.has-photo::after{
-    display:block; content:"";
-    position:static; inset:auto;
-    width:100%; height:clamp(296px,92vw,384px);
-    margin-top:clamp(26px,6vw,38px);
-    background:url("images/hero-home-m.jpg?v=2") center center / cover no-repeat;
-  }
-  .hero.has-photo h1,
-  .hero.has-photo .lead{ text-shadow:none; }
-  .hero.has-photo .lead{ color:var(--text-2); }
+  .hero.has-photo::after{display:none}
+  .hero.has-photo .hero-chips{display:none}
+  .hero.has-photo h1,.hero.has-photo .lead{text-shadow:none}
 }
