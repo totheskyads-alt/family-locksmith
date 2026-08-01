@@ -1,6 +1,25 @@
+# Boti AI de cautare/citare - PERMITE (trimit trafic)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /hero-options.html
 Disallow: /testimonials-preview.html
 
-Sitemap: https://totheskyads-alt.github.io/family-locksmith/sitemap.xml
+Sitemap: https://familylocksmith.co.uk/sitemap.xml
