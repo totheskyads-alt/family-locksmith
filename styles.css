@@ -340,7 +340,7 @@ p{margin:0}
      box with nothing lost sideways and the subject stays framed. The wash is
      kept light and the copy carries its own halo, rather than bleaching the
      picture to make text readable. */
-  .hero.has-photo{--hero-img:url("images/hero-home-m.jpg");
+  .hero.has-photo{--hero-img:url("images/hero-home-m.jpg?v=2");
     background-image:linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.9) 34%, rgba(255,255,255,.62) 62%, rgba(255,255,255,.12) 100%), var(--hero-img);
     background-size:cover; background-position:center 18%; background-repeat:no-repeat;
     padding-bottom:clamp(150px,42vw,220px)}
@@ -906,7 +906,7 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
     position:static; inset:auto;
     width:100%; height:clamp(296px,92vw,384px);
     margin-top:clamp(26px,6vw,38px);
-    background:url("images/hero-home-m.jpg") center center / cover no-repeat;
+    background:url("images/hero-home-m.jpg?v=2") center center / cover no-repeat;
   }
   .hero.has-photo h1,
   .hero.has-photo .lead{ text-shadow:none; }

@@ -21,5 +21,6 @@ User-agent: *
 Allow: /
 Disallow: /hero-options.html
 Disallow: /testimonials-preview.html
+Disallow: /googlef9b0c66464500b51.html
 
 Sitemap: https://familylocksmith.co.uk/sitemap.xml
