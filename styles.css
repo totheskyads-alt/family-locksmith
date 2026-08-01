@@ -892,19 +892,19 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
 .skip-link:focus{left:0}
 
 /* ---- hero pe telefon ---------------------------------------------------------
-   Fotografia e FUNDALUL textului, ca pe desktop. Pentru telefon foloseste o
-   imagine compusa vertical: fata omului si logoul de pe van stau jos, unde nu
-   sunt acoperite de text, iar deasupra e o prelungire neclara a fundalului,
-   care oricum sta sub stratul alb ce tine textul lizibil. */
+   Fotografia e fundalul intregii sectiuni, iar textul sta PESTE ea. Stratul
+   alb e subtire sus, cat sa se vada cerul in spatele titlului, si se stinge
+   complet peste fata omului si logoul de pe van. Textul isi poarta propriul
+   halou alb, ca sa ramana lizibil fara sa spele fotografia. */
 @media (max-width:860px){
   .hero.has-photo{
-    --hero-img:url("images/hero-home-m.jpg?v=4");
+    --hero-img:url("images/hero-home-m.jpg?v=5");
     background-image:
       linear-gradient(180deg,
-        rgba(255,255,255,.97) 0%,
-        rgba(255,255,255,.96) 28%,
-        rgba(255,255,255,.82) 44%,
-        rgba(255,255,255,.30) 58%,
+        rgba(255,255,255,.72) 0%,
+        rgba(255,255,255,.70) 30%,
+        rgba(255,255,255,.55) 46%,
+        rgba(255,255,255,.16) 60%,
         rgba(255,255,255,0)   72%),
       var(--hero-img);
     background-size:cover, cover;
@@ -914,9 +914,9 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
   }
   .hero.has-photo::after{display:none}
   .hero.has-photo .hero-chips{display:none}
-  .hero.has-photo h1,.hero.has-photo .lead{text-shadow:none}
+  .hero.has-photo h1{text-shadow:0 2px 16px rgba(255,255,255,.95), 0 1px 3px rgba(255,255,255,.9)}
+  .hero.has-photo .lead{text-shadow:0 1px 12px rgba(255,255,255,.98), 0 1px 2px rgba(255,255,255,.95)}
 }
-
 /* Telefoane mici: hero mai scund, ca logoul de pe van sa urce deasupra
    butoanelor flotante din coltul din dreapta jos. */
 @media (max-width:400px){
