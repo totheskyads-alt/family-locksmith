@@ -917,7 +917,7 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
   .hero.has-photo .hero-copy{display:flex; flex-direction:column}
   .hero.has-photo h1{order:1; text-shadow:0 2px 18px rgba(255,255,255,.96), 0 1px 3px rgba(255,255,255,.92)}
   /* fereastra libera: paragraful incepe abia dupa ce se termina fotografia */
-  .hero.has-photo .lead{order:2; margin-top:calc(var(--hero-h) - 12.6rem)}
+  .hero.has-photo .lead{order:2; margin-top:calc(var(--hero-h) - 7rem)}
   .hero.has-photo .hero-cta{order:3}
 }
 /* Telefoane mici: hero mai scund, ca logoul de pe van sa urce deasupra
