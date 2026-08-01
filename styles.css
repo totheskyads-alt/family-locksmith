@@ -923,3 +923,46 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
   .hero.has-photo{padding-bottom:clamp(200px,64vw,240px)}
   .hero.has-photo h1{font-size:clamp(34px,9.2vw,42px)}
 }
+
+/* ---- submeniu servicii (meniu principal) -------------------------------------
+   Ca sa se ajunga direct la fiecare serviciu, fara sa treci intai prin pagina
+   Services. Desktop: panou care coboara sub "Services". Telefon: rand care se
+   desfasoara in meniul din burger. */
+.nav-item{position:relative; display:inline-flex; align-items:center; gap:2px}
+.nav-sub-btn{background:none; border:0; padding:6px 2px; cursor:pointer; color:var(--muted);
+  display:inline-grid; place-items:center; border-radius:8px; line-height:0}
+.nav-sub-btn .chev{width:16px; height:16px; transition:transform .2s var(--ease-out)}
+.nav-sub-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.nav-sub-btn:focus-visible{outline:none; box-shadow:0 0 0 3px var(--amber-tint), 0 0 0 5px var(--amber-2)}
+
+.nav-sub{position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%) translateY(-6px);
+  width:min(680px,86vw); background:var(--card); border:1px solid var(--line-2); border-radius:18px;
+  box-shadow:0 24px 60px rgba(18,19,25,.16); padding:10px;
+  display:grid; grid-template-columns:1fr 1fr; gap:2px;
+  opacity:0; visibility:hidden; pointer-events:none; transition:opacity .18s, transform .18s, visibility .18s; z-index:60}
+.nav-item:hover .nav-sub, .nav-item:focus-within .nav-sub, .nav-sub.is-open{
+  opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0)}
+.nav-sub::before{content:""; position:absolute; left:0; right:0; top:-16px; height:16px}
+
+.nsl,.msl{display:flex; gap:12px; align-items:center; padding:11px 12px; border-radius:12px;
+  text-decoration:none; color:var(--ink); transition:background .15s}
+.nsl:hover,.msl:hover,.nsl:focus-visible,.msl:focus-visible{background:var(--paper-2); outline:none}
+.nsl .si,.msl .si{width:36px; height:36px; flex:none; border-radius:10px; background:var(--amber-tint);
+  display:grid; place-items:center; color:var(--amber-deep)}
+.nsl .si svg,.msl .si svg{width:19px; height:19px}
+.nsl .st,.msl .st{display:flex; flex-direction:column; gap:1px; min-width:0}
+.nsl .st b,.msl .st b{font-size:14.5px; font-weight:700; line-height:1.25}
+.nsl .st i,.msl .st i{font-style:normal; font-size:12.5px; color:var(--muted); line-height:1.3}
+.nsl-all,.msl-all{grid-column:1 / -1; justify-content:center; background:var(--paper-2); margin-top:2px}
+.nsl-all .st b,.msl-all .st b{color:var(--amber-deep)}
+
+/* telefon */
+.mnav-group{display:block}
+.mnav-toggle{width:100%; background:none; border:0; padding:0; cursor:pointer; font:inherit;
+  color:inherit; display:flex; align-items:center; justify-content:space-between; gap:10px}
+.mnav-toggle .chev{width:18px; height:18px; flex:none; transition:transform .2s}
+.mnav-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.mnav-sub{max-height:0; overflow:hidden; transition:max-height .28s var(--ease-out)}
+.msl{padding:10px 4px}
+.msl .si{width:32px; height:32px; border-radius:9px}
+.msl .si svg{width:17px; height:17px}
