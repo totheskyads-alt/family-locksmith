@@ -136,7 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Set this to the Formspree (or equivalent) endpoint once the client gives us an
   // inbox. Until then the form validates, thanks the visitor and points them at the
   // phone, rather than silently losing the enquiry.
-  const FORM_ENDPOINT = '';
+  const FORM_ENDPOINT = 'https://family-locksmith-leads.vercel.app/api/lead';
 
   const form=document.getElementById('contactForm');
   if(form){
@@ -145,7 +145,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       e.preventDefault();
       if(form.querySelector('[name="_gotcha"]').value) return;      // bot caught
       ok.style.display='none'; err.style.display='none';
-      if(!FORM_ENDPOINT){ err.style.display='flex'; return; }   // pana e gata endpointul: trimite omul la telefon, nu confirma fals
+      if(!FORM_ENDPOINT){ err.style.display='flex'; return; }
       const label=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
       try{
         const res=await fetch(FORM_ENDPOINT,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
