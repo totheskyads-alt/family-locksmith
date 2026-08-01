@@ -441,7 +441,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       e.preventDefault();
       if(hForm.querySelector('[name="_gotcha"]').value) return;      // bot prins
       ok.style.display='none'; err.style.display='none';
-      if(!FORM_ENDPOINT){ ok.style.display='flex'; hForm.reset(); return; }
+      if(!FORM_ENDPOINT){ err.style.display='flex'; return; }   // pana e gata endpointul: trimite omul la telefon, nu confirma fals
       const label=btn.textContent; btn.disabled=true; btn.textContent='Sending...';
       try{
         const data=Object.fromEntries(new FormData(hForm).entries());
