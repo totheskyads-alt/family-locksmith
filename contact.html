@@ -166,9 +166,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(!FORM_ENDPOINT){ err.style.display='flex'; return; }
       const label=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
       try{
-        const res=await fetch(FORM_ENDPOINT,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+        const data=Object.fromEntries(new FormData(form).entries());
+        data.source='Contact page'; delete data._gotcha;
+        const res=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
         if(!res.ok) throw new Error(res.status);
         ok.style.display='flex'; form.reset();
+        if(window.dataLayer) window.dataLayer.push({event:'lead_form_submit', form_source:data.source});
       }catch(_){ err.style.display='flex'; }
       finally{ btn.disabled=false; btn.textContent=label; }
     });
