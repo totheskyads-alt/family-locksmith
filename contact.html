@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=6705a78c">
+<link rel="stylesheet" href="styles.css?v=06b7db40">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23F5A524'/%3E%3Cg transform='rotate(45 50 50)' fill='%231B1D22'%3E%3Ccircle cx='50' cy='31' r='12.5' fill='none' stroke='%231B1D22' stroke-width='7'/%3E%3Crect x='46' y='39' width='8' height='34'/%3E%3Crect x='54' y='58' width='10' height='6.5'/%3E%3Crect x='54' y='67' width='7.5' height='6'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -97,18 +97,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:24px; margin-bottom:6px">Send us a message</h2>
       <p style="color:var(--muted); font-size:15px; margin-bottom:22px">For emergencies please call, it's much faster. Otherwise, we'll reply as soon as we can.</p>
       <form id="contactForm">
-        <div class="field"><label for="nm">Your name</label><input id="nm" name="name" type="text" placeholder="Jane Smith" required></div>
-        <div class="field"><label for="ph">Phone number</label><input id="ph" name="phone" type="tel" placeholder="07123 456789" required></div>
-        <div class="field"><label for="pc">Postcode</label><input id="pc" name="postcode" type="text" placeholder="M1 2AB"></div>
+        <div class="field"><label for="nm">Your name <span class="opt">(optional)</span></label><input id="nm" name="name" type="text" placeholder="Jane Smith" autocomplete="name"></div>
+        <div class="field"><label for="ph">Phone number</label><input id="ph" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07123 456789" required aria-describedby="ph-err"><span class="field-err" id="ph-err" data-err="phone" hidden></span></div>
+        <div class="field"><label for="pc">Postcode</label><input id="pc" name="postcode" type="text" autocomplete="postal-code" placeholder="M1 2AB" required aria-describedby="pc-err"><span class="field-err" id="pc-err" data-err="postcode" hidden></span></div>
         <div class="field"><label for="pr">What do you need help with?</label><select id="pr" name="problem"><option>Emergency lockout</option><option>uPVC / composite door</option><option>Lock change or repair</option><option>Burglary repair</option><option>Security upgrade</option><option>Commercial / landlord</option><option>Something else</option></select></div>
-        <div class="field"><label for="ms">Message</label><textarea id="ms" name="message" placeholder="Tell us briefly what's happened..."></textarea></div>
+        <div class="field"><label for="ms">Message <span class="opt">(optional)</span></label><textarea id="ms" name="message" placeholder="Tell us briefly what's happened..."></textarea></div>
         <div class="hp" aria-hidden="true"><label for="company">Company</label><input id="company" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
         <div id="formMsg" role="alert" aria-live="polite" class="form-alert form-alert-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Thanks, we've got your message and will be in touch shortly.</div>
         <div id="formErr" role="alert" aria-live="assertive" class="form-alert form-alert-err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span>That didn't send. Please call <a href="tel:+447597379838">07597 379838</a> instead, we answer 24/7.</span></div>
-      </form>
-    </div>
         <button type="submit" class="btn btn-amber btn-block btn-lg" id="formSubmit">Send message</button>
         <p class="form-note">By sending this you agree to us contacting you about your enquiry. See our <a href="privacy.html" style="color:var(--amber-deep)">privacy policy</a>.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -161,7 +161,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const ok=document.getElementById('formMsg'), err=document.getElementById('formErr'), btn=document.getElementById('formSubmit');
     form.addEventListener('submit',async(e)=>{
       e.preventDefault();
-      if(form.querySelector('[name="_gotcha"]').value) return;      // bot caught
+      if(form.querySelector('[name="_gotcha"]').value) return;
+      if(window.FLform && !window.FLform.validate(form)) return;   // telefon UK real + cod postal UK valid      // bot caught
       ok.style.display='none'; err.style.display='none';
       if(!FORM_ENDPOINT){ err.style.display='flex'; return; }
       const label=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
@@ -182,5 +183,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="consent.js?v=2" defer></script>
 <script src="nav.js?v=1" defer></script>
+<script src="forms.js?v=1" defer></script>
 </body>
 </html>
