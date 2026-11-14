@@ -980,17 +980,25 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
 /* ---- bara de sus: doar locuinte si firme, fara masini ------------------------
    Cerere client: oamenii suna pentru deschideri de masini, serviciu pe care nu
    il ofera. Bara sta deasupra meniului si pleaca odata cu pagina la derulare. */
-.notice-bar{background:var(--espresso); color:#fff; text-align:center;
-  padding:9px clamp(14px,4vw,24px); font-size:14px; font-weight:600; line-height:1.4;
-  letter-spacing:.01em}
+.notice-bar{position:sticky; top:0; z-index:61; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  background:var(--amber); color:var(--espresso); text-align:center;
+  padding:10px clamp(14px,4vw,24px); font-size:15px; font-weight:800; line-height:1.35;
+  letter-spacing:.01em; box-shadow:0 1px 0 rgba(0,0,0,.08);
+  animation:nb-in .6s cubic-bezier(.2,.8,.2,1) both}
+.notice-bar .nb-ico{display:inline-flex; flex:0 0 auto; animation:nb-bob 3.2s ease-in-out 1s infinite}
 .notice-bar .nb-short{display:none}
-@media (max-width:560px){
-  .notice-bar{font-size:12.5px; padding:8px 12px}
-  .notice-bar .nb-full{display:none}
-  .notice-bar .nb-short{display:inline}
-}
-/* meniul din burger se deschide fix sub header, oriunde ar fi el: la inceputul
-   paginii headerul sta sub bara, dupa derulare se lipeste de marginea de sus. */
+/* o lumina care trece peste bara din cand in cand, ca sa prinda privirea */
+.notice-bar::after{content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(105deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%);
+  transform:translateX(-100%); animation:nb-shine 4.5s ease-in-out 1.2s infinite}
+@keyframes nb-in{from{transform:translateY(-100%); opacity:0} to{transform:none; opacity:1}}
+@keyframes nb-shine{0%{transform:translateX(-100%)} 35%,100%{transform:translateX(100%)}}
+@keyframes nb-bob{0%,70%,100%{transform:none} 78%{transform:translateY(-3px) rotate(-8deg)} 86%{transform:translateY(0) rotate(6deg)}}
+@media (max-width:560px){ .notice-bar{font-size:13.5px; padding:9px 12px}
+  .notice-bar .nb-full{display:none} .notice-bar .nb-short{display:inline} }
+@media (prefers-reduced-motion:reduce){ .notice-bar,.notice-bar .nb-ico,.notice-bar::after{animation:none} .notice-bar::after{display:none} }
+.header{top:var(--nb-h,0px)}
 .mnav{top:var(--hdr-bottom,76px)}
 
 /* linia din footer */

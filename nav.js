@@ -39,7 +39,9 @@
   (function () {
     var hdr = document.getElementById('header');
     if (!hdr) return;
+    var nb = document.querySelector('.notice-bar');
     function sync() {
+      if (nb) document.documentElement.style.setProperty('--nb-h', nb.offsetHeight + 'px');
       document.documentElement.style.setProperty(
         '--hdr-bottom', Math.max(0, Math.round(hdr.getBoundingClientRect().bottom)) + 'px');
     }
