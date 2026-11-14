@@ -33,4 +33,18 @@
       if (t) t.setAttribute('aria-expanded', 'false');
     });
   });
+
+  /* Meniul mobil trebuie sa inceapa exact sub header. Headerul coboara cat tine
+     bara de sus cat timp nu s-a derulat, apoi se lipeste de marginea ecranului. */
+  (function () {
+    var hdr = document.getElementById('header');
+    if (!hdr) return;
+    function sync() {
+      document.documentElement.style.setProperty(
+        '--hdr-bottom', Math.max(0, Math.round(hdr.getBoundingClientRect().bottom)) + 'px');
+    }
+    sync();
+    addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+  })();
 })();

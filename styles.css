@@ -976,3 +976,23 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
 .field-err{display:block; margin-top:6px; font-size:13.5px; font-weight:600; color:#B4231C}
 .field .opt{font-weight:500; color:var(--faint)}
 .field input[aria-invalid="true"]{border-color:#D9483F; box-shadow:0 0 0 3px rgba(217,72,63,.12)}
+
+/* ---- bara de sus: doar locuinte si firme, fara masini ------------------------
+   Cerere client: oamenii suna pentru deschideri de masini, serviciu pe care nu
+   il ofera. Bara sta deasupra meniului si pleaca odata cu pagina la derulare. */
+.notice-bar{background:var(--espresso); color:#fff; text-align:center;
+  padding:9px clamp(14px,4vw,24px); font-size:14px; font-weight:600; line-height:1.4;
+  letter-spacing:.01em}
+.notice-bar .nb-short{display:none}
+@media (max-width:560px){
+  .notice-bar{font-size:12.5px; padding:8px 12px}
+  .notice-bar .nb-full{display:none}
+  .notice-bar .nb-short{display:inline}
+}
+/* meniul din burger se deschide fix sub header, oriunde ar fi el: la inceputul
+   paginii headerul sta sub bara, dupa derulare se lipeste de marginea de sus. */
+.mnav{top:var(--hdr-bottom,76px)}
+
+/* linia din footer */
+.foot-notice{margin-top:12px; font-size:13.5px; line-height:1.5; color:var(--cream-2);
+  border-left:3px solid var(--amber); padding-left:12px}
