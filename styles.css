@@ -324,7 +324,7 @@ p{margin:0}
    rule (subject right, copy left under the scrim) and their art is
    interchangeable. The decorative glow and grid are switched off: they were
    there to fill an empty background, and there is no empty background now. */
-.hero.has-photo{--hero-img:url("images/hero-home.jpg");
+.hero.has-photo{--hero-img:url("images/hero-home.jpg?v=8");
   background-image:var(--hero-scrim), var(--hero-img);
   background-size:cover; background-position:right center; background-repeat:no-repeat;
   overflow:hidden}
@@ -899,7 +899,7 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
    decupajul e mutat spre dreapta, ca sa intre si logoul de pe van. Textul isi
    pastreaza haloul alb, altfel nu ar mai fi lizibil peste fotografie. */
 @media (max-width:860px){
-  .hero.has-photo{--hero-img:url("images/hero-home-m.jpg?v=7");
+  .hero.has-photo{--hero-img:url("images/hero-home-m.jpg?v=8");
     background-image:linear-gradient(180deg,
       rgba(255,255,255,.84) 0%,
       rgba(255,255,255,.88) 40%,
