@@ -981,23 +981,29 @@ box-shadow:0 6px 18px rgba(18,19,25,.18)}
    Cerere client: oamenii suna pentru deschideri de masini, serviciu pe care nu
    il ofera. Bara sta deasupra meniului si pleaca odata cu pagina la derulare. */
 .notice-bar{position:sticky; top:0; z-index:61; overflow:hidden;
-  display:flex; align-items:center; justify-content:center; gap:8px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
   background:var(--amber); color:var(--espresso); text-align:center;
-  padding:10px clamp(14px,4vw,24px); font-size:15px; font-weight:800; line-height:1.35;
-  letter-spacing:.01em; box-shadow:0 1px 0 rgba(0,0,0,.08);
-  animation:nb-in .6s cubic-bezier(.2,.8,.2,1) both}
-.notice-bar .nb-ico{display:inline-flex; flex:0 0 auto; animation:nb-bob 3.2s ease-in-out 1s infinite}
+  padding:12px clamp(14px,4vw,24px); font-size:17px; font-weight:800; line-height:1.3;
+  letter-spacing:.01em; border-bottom:3px solid var(--espresso);
+  animation:nb-in .6s cubic-bezier(.2,.8,.2,1) both, nb-glow 3s ease-in-out 1.2s infinite}
+.notice-bar .nb-ico,.notice-bar .nb-nocar{display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;
+  width:30px; height:30px; border-radius:50%; background:var(--espresso); color:var(--amber)}
+.notice-bar .nb-ico{animation:nb-bob 3s ease-in-out 1s infinite}
+.notice-bar .nb-nocar{background:#fff; color:var(--espresso); animation:nb-ring 3s ease-out 1.4s infinite}
 .notice-bar .nb-short{display:none}
-/* o lumina care trece peste bara din cand in cand, ca sa prinda privirea */
 .notice-bar::after{content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(105deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%);
-  transform:translateX(-100%); animation:nb-shine 4.5s ease-in-out 1.2s infinite}
+  background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,.75) 50%, transparent 70%);
+  transform:translateX(-100%); animation:nb-shine 3s ease-in-out 1.2s infinite}
 @keyframes nb-in{from{transform:translateY(-100%); opacity:0} to{transform:none; opacity:1}}
-@keyframes nb-shine{0%{transform:translateX(-100%)} 35%,100%{transform:translateX(100%)}}
-@keyframes nb-bob{0%,70%,100%{transform:none} 78%{transform:translateY(-3px) rotate(-8deg)} 86%{transform:translateY(0) rotate(6deg)}}
-@media (max-width:560px){ .notice-bar{font-size:13.5px; padding:9px 12px}
+@keyframes nb-shine{0%{transform:translateX(-100%)} 45%,100%{transform:translateX(100%)}}
+@keyframes nb-glow{0%,100%{background-color:var(--amber)} 50%{background-color:var(--amber-3)}}
+@keyframes nb-bob{0%,70%,100%{transform:none} 78%{transform:translateY(-3px) rotate(-10deg)} 86%{transform:rotate(8deg)}}
+@keyframes nb-ring{0%{box-shadow:0 0 0 0 rgba(229,72,77,.65)} 70%,100%{box-shadow:0 0 0 10px rgba(229,72,77,0)}}
+@media (max-width:560px){ .notice-bar{font-size:14.5px; padding:10px 10px; gap:8px}
+  .notice-bar .nb-ico,.notice-bar .nb-nocar{width:26px; height:26px}
   .notice-bar .nb-full{display:none} .notice-bar .nb-short{display:inline} }
-@media (prefers-reduced-motion:reduce){ .notice-bar,.notice-bar .nb-ico,.notice-bar::after{animation:none} .notice-bar::after{display:none} }
+@media (max-width:360px){ .notice-bar{font-size:13px} .notice-bar .nb-ico{display:none} }
+@media (prefers-reduced-motion:reduce){ .notice-bar,.notice-bar .nb-ico,.notice-bar .nb-nocar,.notice-bar::after{animation:none} .notice-bar::after{display:none} }
 .header{top:var(--nb-h,0px)}
 .mnav{top:var(--hdr-bottom,76px)}
 
