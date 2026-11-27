@@ -1,7 +1,8 @@
 /* Anti click fraud: la fiecare vizita venita dintr-o reclama Google
  * (link cu gclid, gbraid sau wbraid) trimite ora, pagina si id-ul clicului.
  * IP-ul il citeste serverul din cerere; scriptul nu pune cookie-uri.
- * Rezultatele ajung intr-un tabel, din care se vad IP-urile repetate. */
+ * Rezultatele ajung in Cloudflare (Worker family-locksmith-visits, baza D1 fl-visits),
+ * din care se vad IP-urile repetate. */
 (function () {
   try {
     var q = new URLSearchParams(location.search);
@@ -22,7 +23,7 @@
       sessionStorage.setItem('fl_v_' + id, '1');
     } catch (e) {}
 
-    fetch('https://iyrqlykoncdvwxvkkzqq.supabase.co/functions/v1/fl-visit', {
+    fetch('/api/visit', {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data),
